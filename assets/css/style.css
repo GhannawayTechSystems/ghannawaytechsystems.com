@@ -1,0 +1,10 @@
+/* assets/css/style.css */
+/* small custom tweaks for Tailwind-based site */
+:root{
+  --brand: #3b82f6;
+}
+body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+.header-logo{ width:44px;height:44px;object-fit:contain; }
+.card-img{ aspect-ratio: 16/9; object-fit: cover; border-radius: 0.5rem; }
+.footer-link:hover{ color: white; }
+.badge{ background: rgba(59,130,246,0.1); color: var(--brand); padding: 0.35rem 0.6rem; border-radius: 999px; font-weight:600; font-size:0.85rem; }
