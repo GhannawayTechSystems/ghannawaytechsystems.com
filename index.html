@@ -1,100 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ghannaway Tech Systems</title>
-<link rel="stylesheet" href="assets/css/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghannaway Tech Systems</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fc;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #004aad;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 { color: #004aad; }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #004aad;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { background: #0066ff; }
+    #list { margin-top: 30px; }
+    .item {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f0f0f0;
+      color: #666;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
 <header>
-  <nav>
-    <h1>Ghannaway Tech Systems</h1>
-  </nav>
+  <h1>Ghannaway Tech Systems</h1>
+  <p>Innovating Smart Solutions Across Kenya</p>
 </header>
+<main>
+  <h2>Contact Us</h2>
+  <form id="contactForm">
+    <input name="name" placeholder="Your Name" required>
+    <input name="email" placeholder="Your Email" required type="email">
+    <input name="phone" placeholder="Phone Number">
+    <select name="service">
+      <option value="">Select Service</option>
+      <option>POS System</option>
+      <option>Web Development</option>
+      <option>Networking</option>
+      <option>Automation</option>
+    </select>
+    <textarea name="message" rows="4" placeholder="Your Message"></textarea>
+    <button type="submit">Send</button>
+    <p id="msg" style="color:#004aad;font-weight:bold;"></p>
+  </form>
 
-<main style="max-width:900px;margin:24px auto;padding:12px">
-  <section id="hero">
-    <h2>Smart solutions for Kenyan businesses</h2>
-    <p>POS, inventory, automation, and no-cost hosting demo.</p>
-  </section>
-
-  <section id="contact">
-    <h3>Contact / Request Demo</h3>
-    <form id="contactForm">
-      <label>Name <input name="name" required></label><br>
-      <label>Email <input name="email" type="email" required></label><br>
-      <label>Phone <input name="phone" type="tel"></label><br>
-      <label>Service <input name="service"></label><br>
-      <label>Message<br><textarea name="message"></textarea></label><br>
-      <button type="submit">Send</button>
-    </form>
-    <div id="msg"></div>
-  </section>
-
-  <section id="clients-list">
-    <h3>Recent Leads (public demo)</h3>
-    <div id="list"></div>
-    <div>
-      <button id="prev">Prev</button>
-      <span id="pageLabel">1</span>
-      <button id="next">Next</button>
-    </div>
-  </section>
+  <h2>Messages Received</h2>
+  <div id="list">Loading...</div>
+  <div style="margin-top:15px;text-align:center;">
+    <button id="prev">Prev</button>
+    <span id="pageLabel">1</span>
+    <button id="next">Next</button>
+  </div>
 </main>
+<footer>
+  © 2025 Ghannaway Tech Systems — Powered by Google Sheets + GitHub Pages
+</footer>
 
 <script>
-const API_URL = "<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ghannaway Tech Systems</title>
-<link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-<header>
-  <nav>
-    <h1>Ghannaway Tech Systems</h1>
-  </nav>
-</header>
-
-<main style="max-width:900px;margin:24px auto;padding:12px">
-  <section id="hero">
-    <h2>Smart solutions for Kenyan businesses</h2>
-    <p>POS, inventory, automation, and no-cost hosting demo.</p>
-  </section>
-
-  <section id="contact">
-    <h3>Contact / Request Demo</h3>
-    <form id="contactForm">
-      <label>Name <input name="name" required></label><br>
-      <label>Email <input name="email" type="email" required></label><br>
-      <label>Phone <input name="phone" type="tel"></label><br>
-      <label>Service <input name="service"></label><br>
-      <label>Message<br><textarea name="message"></textarea></label><br>
-      <button type="submit">Send</button>
-    </form>
-    <div id="msg"></div>
-  </section>
-
-  <section id="clients-list">
-    <h3>Recent Leads (public demo)</h3>
-    <div id="list"></div>
-    <div>
-      <button id="prev">Prev</button>
-      <span id="pageLabel">1</span>
-      <button id="next">Next</button>
-    </div>
-  </section>
-</main>
-
-<script>
-const API_URL = "YOUR_APPS_SCRIPT_WEBAPP_URL"; // replace with Apps Script web app URL
-
-// form submit
+const API_URL = "YOUR_WEB_APP_URL_HERE"; // Replace with your Apps Script URL
 const form = document.getElementById('contactForm');
 const msg = document.getElementById('msg');
+let page = 1, pageSize = 10;
+
 form.addEventListener('submit', async (ev) => {
   ev.preventDefault();
   const data = {
@@ -105,30 +107,29 @@ form.addEventListener('submit', async (ev) => {
     message: form.message.value.trim()
   };
 
-  // client-side validation
-  if (!data.name || !data.email) { msg.innerText = 'Name and email required'; return; }
+  if (!data.name || !data.email) {
+    msg.innerText = 'Name and email required';
+    return;
+  }
 
+  msg.innerText = 'Sending...';
   try {
     const res = await fetch(API_URL, {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     });
     const j = await res.json();
     if (res.ok && j.ok) {
       msg.innerText = 'Thanks! We received your message.';
       form.reset();
-      loadPage(1); // reload list
-    } else {
-      msg.innerText = 'Error: ' + (j.error || 'Server error');
-    }
+      loadPage(1);
+    } else msg.innerText = 'Error: ' + (j.error || 'Server error');
   } catch (err) {
     msg.innerText = 'Network error: ' + err.message;
   }
 });
 
-// simple listing with paging
-let page = 1, pageSize = 10;
 async function loadPage(p) {
   page = p || page;
   document.getElementById('pageLabel').innerText = page;
@@ -140,86 +141,21 @@ async function loadPage(p) {
     const j = await res.json();
     const container = document.getElementById('list');
     if (j.results && j.results.length) {
-      container.innerHTML = j.results.map(r => `<div style="padding:8px;border-bottom:1px solid #eee"><strong>${escapeHtml(r.name)}</strong> — ${escapeHtml(r.email)}<br><small>${escapeHtml(r.service)} • ${escapeHtml(String(r.created_at||''))}</small><p>${escapeHtml(r.message||'')}</p></div>`).join('');
-    } else {
-      container.innerHTML = '<i>No results</i>';
-    }
+      container.innerHTML = j.results.map(r => `
+        <div class="item">
+          <b>${r.name}</b> (${r.email})<br>
+          <small>${r.service} • ${r.created_at}</small><br>
+          <p>${r.message || ''}</p>
+        </div>
+      `).join('');
+    } else container.innerHTML = 'No results';
   } catch (err) {
-    console.error(err);
+    document.getElementById('list').innerText = 'Error loading data.';
   }
 }
-document.getElementById('prev').addEventListener('click', ()=> { if(page>1) loadPage(page-1); });
-document.getElementById('next').addEventListener('click', ()=> loadPage(page+1));
-function escapeHtml(s){ return (s||'').toString().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-// init
-loadPage(1);
-</script>
-</body>
-</html>
-"; // replace with Apps Script web app URL
-
-// form submit
-const form = document.getElementById('contactForm');
-const msg = document.getElementById('msg');
-form.addEventListener('submit', async (ev) => {
-  ev.preventDefault();
-  const data = {
-    name: form.name.value.trim(),
-    email: form.email.value.trim(),
-    phone: form.phone.value.trim(),
-    service: form.service.value.trim(),
-    message: form.message.value.trim()
-  };
-
-  // client-side validation
-  if (!data.name || !data.email) { msg.innerText = 'Name and email required'; return; }
-
-  try {
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(data)
-    });
-    const j = await res.json();
-    if (res.ok && j.ok) {
-      msg.innerText = 'Thanks! We received your message.';
-      form.reset();
-      loadPage(1); // reload list
-    } else {
-      msg.innerText = 'Error: ' + (j.error || 'Server error');
-    }
-  } catch (err) {
-    msg.innerText = 'Network error: ' + err.message;
-  }
-});
-
-// simple listing with paging
-let page = 1, pageSize = 10;
-async function loadPage(p) {
-  page = p || page;
-  document.getElementById('pageLabel').innerText = page;
-  const url = new URL(API_URL);
-  url.searchParams.set('page', page);
-  url.searchParams.set('pageSize', pageSize);
-  try {
-    const res = await fetch(url.toString());
-    const j = await res.json();
-    const container = document.getElementById('list');
-    if (j.results && j.results.length) {
-      container.innerHTML = j.results.map(r => `<div style="padding:8px;border-bottom:1px solid #eee"><strong>${escapeHtml(r.name)}</strong> — ${escapeHtml(r.email)}<br><small>${escapeHtml(r.service)} • ${escapeHtml(String(r.created_at||''))}</small><p>${escapeHtml(r.message||'')}</p></div>`).join('');
-    } else {
-      container.innerHTML = '<i>No results</i>';
-    }
-  } catch (err) {
-    console.error(err);
-  }
-}
-document.getElementById('prev').addEventListener('click', ()=> { if(page>1) loadPage(page-1); });
-document.getElementById('next').addEventListener('click', ()=> loadPage(page+1));
-function escapeHtml(s){ return (s||'').toString().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-// init
+document.getElementById('prev').addEventListener('click', () => { if (page > 1) loadPage(page - 1); });
+document.getElementById('next').addEventListener('click', () => loadPage(page + 1));
 loadPage(1);
 </script>
 </body>
