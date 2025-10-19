@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology." />
+  <meta name="description" content="Team — Ghannaway Tech Systems (GTS)" />
   <meta name="theme-color" content="#3b82f6" />
-  <title>Ghannaway Tech Systems — Empowering Africa Through Technology</title>
+  <title>Our Team — Ghannaway Tech Systems</title>
   <link rel="icon" href="assets/img/logo.png" />
 
   <style>
@@ -28,38 +28,53 @@
       #menu-btn { display:block; color:#333; }
     }
 
-    .hero {
+    .page-hero {
       background:linear-gradient(135deg,#2563eb,#3b82f6);
-      color:white; padding:120px 6% 80px;
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      color:white; padding:120px 6% 60px;
+      text-align:center;
     }
-    .hero-text { flex:1 1 400px; max-width:500px; }
-    .hero h1 { font-size:2.5rem; margin-bottom:15px; }
-    .hero p { font-size:1.1rem; margin-bottom:25px; }
-    .hero a {
-      display:inline-block; background:white; color:#2563eb;
-      padding:10px 20px; border-radius:6px; font-weight:600; text-decoration:none; margin-right:10px;
-    }
-    .hero a.secondary { background:transparent; color:white; border:2px solid white; }
-    .hero a:hover { opacity:0.9; }
+    .page-hero h1 { font-size:2.5rem; margin-bottom:10px; }
+    .page-hero p { font-size:1.1rem; }
 
-    .services, .products { padding:80px 6%; text-align:center; }
-    .services h2, .products h2 { color:#2563eb; font-size:2rem; margin-bottom:10px; }
-    .services p, .products p { color:#666; margin-bottom:40px; }
+    .team {
+      padding:80px 6%;
+    }
+    .team h2 {
+      color:#2563eb; font-size:2rem; text-align:center; margin-bottom:10px;
+    }
+    .team p.subtitle {
+      color:#666; text-align:center; margin-bottom:50px;
+    }
 
     .grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
       gap:30px;
+      justify-content:center;
     }
-    .card {
+    .member {
       background:white; padding:25px; border-radius:12px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.05); transition:transform 0.3s;
+      box-shadow:0 2px 6px rgba(0,0,0,0.05); text-align:center;
+      transition:transform 0.3s;
     }
-    .card:hover { transform:translateY(-5px); }
-    .card img { width:100%; border-radius:10px; height:180px; object-fit:cover; margin-bottom:15px; }
-    .card h3 { font-size:1.1rem; color:#111; margin-bottom:5px; }
-    .card p { font-size:0.9rem; color:#555; }
+    .member:hover { transform:translateY(-5px); }
+    .member img {
+      width:120px; height:120px; border-radius:50%;
+      object-fit:cover; margin-bottom:15px;
+      border:3px solid #2563eb;
+    }
+    .member h3 { font-size:1.2rem; color:#111; margin-bottom:5px; }
+    .member span {
+      display:block; font-size:0.9rem; color:#2563eb; font-weight:600; margin-bottom:10px;
+    }
+    .member p { font-size:0.9rem; color:#555; margin-bottom:10px; }
+    .social {
+      display:flex; justify-content:center; gap:10px;
+    }
+    .social a {
+      color:#2563eb; font-size:1.2rem; text-decoration:none;
+    }
+    .social a:hover { color:#1e40af; }
 
     .cta {
       background:#2563eb; color:white; text-align:center;
@@ -95,76 +110,78 @@
       <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
     </div>
     <nav id="nav">
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="products.html">Products</a>
-      <a href="team.html">Team</a>
+      <a href="team.html" class="active">Team</a>
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
     </nav>
     <button id="menu-btn">☰</button>
   </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Empowering Africa Through Technology</h1>
-      <p>Ghannaway Tech Systems builds software, deploys networks, and provides hosting & IT services to businesses, institutions, and entrepreneurs across the continent.</p>
-      <a href="services.html">Our Services</a>
-      <a href="contact.html" class="secondary">Contact Sales</a>
-    </div>
-    <div style="flex:1 1 400px;max-width:500px;">
-      <img src="assets/img/hero.jpg" alt="GTS Hero" style="width:100%;border-radius:12px;">
-    </div>
+  <section class="page-hero">
+    <h1>Our Team</h1>
+    <p>The talented professionals powering Ghannaway Tech Systems’ innovation and excellence.</p>
   </section>
 
-  <section class="services">
-    <h2>Our Core Services</h2>
-    <p>We provide end-to-end IT services — from design and deployment to maintenance and cloud hosting.</p>
+  <section class="team">
+    <h2>Meet the GTS Team</h2>
+    <p class="subtitle">Our experts bring together years of experience in software, networking, design, and business innovation.</p>
 
     <div class="grid">
-      <div class="card">
-        <h3>IT Infrastructure & Networking</h3>
-        <p>Design, install and maintain networks, servers, CCTV, and on-premise systems.</p>
+      <div class="member">
+        <img src="assets/img/team/elvis.jpg" alt="Elvis Ndombi">
+        <h3>Elvis Ndombi</h3>
+        <span>Founder & CEO</span>
+        <p>Visionary technologist leading GTS with a passion for innovation and African digital transformation.</p>
+        <div class="social">
+          <a href="#">🌐</a>
+          <a href="#">💼</a>
+          <a href="#">🐦</a>
+        </div>
       </div>
-      <div class="card">
-        <h3>Software & Mobile Apps</h3>
-        <p>Custom web and mobile applications, integrations, and automation for business workflows.</p>
-      </div>
-      <div class="card">
-        <h3>Cloud, Hosting & DevOps</h3>
-        <p>Cloud migrations, VPS, managed hosting and CI/CD to make systems scalable and secure.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="products">
-    <h2>Products by GTS</h2>
-    <p>Ready-made & custom products created to solve practical business problems.</p>
+      <div class="member">
+        <img src="assets/img/team/techlead.jpg" alt="Tech Lead">
+        <h3>Mary Atieno</h3>
+        <span>Lead Software Engineer</span>
+        <p>Expert in full-stack development and system architecture. Ensures product quality and scalability.</p>
+        <div class="social">
+          <a href="#">💼</a>
+          <a href="#">🐦</a>
+        </div>
+      </div>
 
-    <div class="grid">
-      <div class="card">
-        <img src="assets/img/products/app1.jpg" alt="GTS Noter">
-        <h3>GTS Noter</h3>
-        <p>A simple, powerful notes & tasks system for teams and individuals.</p>
+      <div class="member">
+        <img src="assets/img/team/network.jpg" alt="Network Engineer">
+        <h3>John Mwangi</h3>
+        <span>Network & Infrastructure Engineer</span>
+        <p>Specialist in cloud deployment, security, and networking — keeping systems running efficiently.</p>
+        <div class="social">
+          <a href="#">🌐</a>
+          <a href="#">💼</a>
+        </div>
       </div>
-      <div class="card">
-        <img src="assets/img/products/app2.jpg" alt="GTS CloudDesk">
-        <h3>GTS CloudDesk</h3>
-        <p>Cloud workspace for teams — file sharing, collaboration and backups.</p>
-      </div>
-      <div class="card">
-        <img src="assets/img/products/app3.jpg" alt="GTS POS">
-        <h3>GTS POS</h3>
-        <p>Point-of-sale & inventory system for retail and boutiques.</p>
+
+      <div class="member">
+        <img src="assets/img/team/support.jpg" alt="Support Lead">
+        <h3>Sarah Wanjiku</h3>
+        <span>Customer Support Lead</span>
+        <p>Dedicated to delivering the best client experience and after-sales technical support across all services.</p>
+        <div class="social">
+          <a href="#">💼</a>
+          <a href="#">🐦</a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="cta">
-    <h3>Ready to transform your business?</h3>
-    <p>Schedule a consultation and let GTS design a tailored solution for you.</p>
-    <a href="contact.html">Contact Us</a>
+    <h3>Want to Join Our Team?</h3>
+    <p>We’re always looking for passionate innovators to help us shape the future of African technology.</p>
+    <a href="contact.html">Work With Us</a>
   </section>
 
   <footer>

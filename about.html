@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="About Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology." />
+  <meta name="theme-color" content="#3b82f6" />
+  <title>About — Ghannaway Tech Systems</title>
+  <link rel="icon" href="assets/img/logo.png" />
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
+    body { background:#f9fafb; color:#222; line-height:1.6; }
+    header {
+      position:fixed; top:0; left:0; right:0;
+      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 6%; z-index:100;
+    }
+    header img { width:40px; height:40px; object-fit:contain; }
+    header nav a {
+      color:#333; text-decoration:none; margin:0 10px; font-weight:500;
+    }
+    header nav a:hover, .active { color:#2563eb; }
+    #menu-btn { display:none; background:none; border:none; font-size:1.6rem; }
+    @media(max-width:768px){
+      header nav { display:none; }
+      #menu-btn { display:block; color:#333; }
+    }
+
+    main { padding-top:90px; }
+
+    .hero {
+      background:linear-gradient(135deg,#2563eb,#3b82f6);
+      color:white; text-align:center;
+      padding:100px 6% 80px;
+    }
+    .hero h1 { font-size:2.5rem; margin-bottom:15px; }
+    .hero p { font-size:1.1rem; max-width:700px; margin:0 auto; }
+
+    .content {
+      padding:60px 6%;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:50px;
+      align-items:center;
+    }
+    .content img {
+      width:100%; border-radius:10px; object-fit:cover;
+    }
+    .content-text h2 {
+      color:#2563eb; font-size:1.8rem; margin-bottom:15px;
+    }
+    .content-text p {
+      color:#555; margin-bottom:15px;
+    }
+
+    .mission {
+      background:#eef2ff; text-align:center;
+      padding:80px 6%;
+    }
+    .mission h2 { color:#2563eb; font-size:1.8rem; margin-bottom:20px; }
+    .mission p { color:#444; max-width:800px; margin:0 auto 10px; }
+
+    footer {
+      background:#111827; color:#ccc; padding:60px 6% 20px;
+    }
+    footer .footer-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:30px; margin-bottom:20px;
+    }
+    footer h4, footer h5 { color:#fff; margin-bottom:10px; }
+    footer a { color:#60a5fa; text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+    footer .bottom {
+      text-align:center; border-top:1px solid #333;
+      padding-top:15px; font-size:0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="assets/img/logo.png" alt="GTS Logo">
+      <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
+    </div>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="services.html">Services</a>
+      <a href="products.html">Products</a>
+      <a href="team.html">Team</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button id="menu-btn">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>About Ghannaway Tech Systems</h1>
+      <p>We are a forward-thinking technology company dedicated to empowering Africa through innovation, digital transformation, and sustainable IT solutions.</p>
+    </section>
+
+    <section class="content">
+      <div class="content-text">
+        <h2>Who We Are</h2>
+        <p>Founded by visionary technologist Elvis Ndombi, Ghannaway Tech Systems (GTS) delivers smart, scalable technology solutions for businesses, institutions, and individuals. Our expertise spans software development, cloud infrastructure, networking, and automation.</p>
+        <p>At GTS, we believe that technology should simplify life and drive growth. We build tools, platforms, and systems that enable people to work smarter, connect seamlessly, and achieve more.</p>
+      </div>
+      <div>
+        <img src="assets/img/about.jpg" alt="About GTS">
+      </div>
+    </section>
+
+    <section class="mission">
+      <h2>Our Mission</h2>
+      <p>To empower individuals and organizations across Africa through reliable, affordable, and innovative technology solutions.</p>
+
+      <h2>Our Vision</h2>
+      <p>To be the leading provider of digital transformation and IT infrastructure in Africa, inspiring the next generation of creators and innovators.</p>
+
+      <h2>Our Values</h2>
+      <p>Integrity, innovation, inclusivity, and impact — we work to build trust, foster creativity, and ensure technology benefits everyone.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <img src="assets/img/logo.png" alt="GTS Logo" style="width:45px;height:45px;margin-bottom:8px;">
+        <h4>Ghannaway Tech Systems</h4>
+        <p>Empowering Africa Through Technology — software, hardware, hosting and support.</p>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+        <a href="about.html">About</a><br>
+        <a href="services.html">Services</a><br>
+        <a href="products.html">Products</a><br>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <p>Email: <a href="mailto:info@ghannawaytech.co.ke">info@ghannawaytech.co.ke</a></p>
+        <p>Phone: +254 7xx xxx xxx</p>
+        <p>Oloitoktok, Kenya</p>
+      </div>
+    </div>
+    <div class="bottom">© 2025 Ghannaway Tech Systems. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const nav = document.getElementById('nav');
+    menuBtn.addEventListener('click', ()=>{
+      nav.style.display = (nav.style.display==='flex') ? 'none' : 'flex';
+      nav.style.flexDirection = 'column';
+      nav.style.background = '#fff';
+      nav.style.position = 'absolute';
+      nav.style.top = '60px';
+      nav.style.right = '6%';
+      nav.style.padding = '10px';
+      nav.style.border = '1px solid #ddd';
+      nav.style.borderRadius = '6px';
+    });
+  </script>
+</body>
+</html>

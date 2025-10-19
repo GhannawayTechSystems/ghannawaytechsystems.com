@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology." />
+  <meta name="description" content="Services — Ghannaway Tech Systems (GTS)" />
   <meta name="theme-color" content="#3b82f6" />
-  <title>Ghannaway Tech Systems — Empowering Africa Through Technology</title>
+  <title>Services — Ghannaway Tech Systems</title>
   <link rel="icon" href="assets/img/logo.png" />
 
   <style>
@@ -28,28 +28,27 @@
       #menu-btn { display:block; color:#333; }
     }
 
-    .hero {
+    .page-hero {
       background:linear-gradient(135deg,#2563eb,#3b82f6);
-      color:white; padding:120px 6% 80px;
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      color:white; padding:120px 6% 60px;
+      text-align:center;
     }
-    .hero-text { flex:1 1 400px; max-width:500px; }
-    .hero h1 { font-size:2.5rem; margin-bottom:15px; }
-    .hero p { font-size:1.1rem; margin-bottom:25px; }
-    .hero a {
-      display:inline-block; background:white; color:#2563eb;
-      padding:10px 20px; border-radius:6px; font-weight:600; text-decoration:none; margin-right:10px;
-    }
-    .hero a.secondary { background:transparent; color:white; border:2px solid white; }
-    .hero a:hover { opacity:0.9; }
+    .page-hero h1 { font-size:2.5rem; margin-bottom:10px; }
+    .page-hero p { font-size:1.1rem; }
 
-    .services, .products { padding:80px 6%; text-align:center; }
-    .services h2, .products h2 { color:#2563eb; font-size:2rem; margin-bottom:10px; }
-    .services p, .products p { color:#666; margin-bottom:40px; }
+    .services {
+      padding:80px 6%;
+    }
+    .services h2 {
+      color:#2563eb; font-size:2rem; text-align:center; margin-bottom:10px;
+    }
+    .services p.subtitle {
+      color:#666; text-align:center; margin-bottom:50px;
+    }
 
     .grid {
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:30px;
     }
     .card {
@@ -57,9 +56,11 @@
       box-shadow:0 2px 6px rgba(0,0,0,0.05); transition:transform 0.3s;
     }
     .card:hover { transform:translateY(-5px); }
-    .card img { width:100%; border-radius:10px; height:180px; object-fit:cover; margin-bottom:15px; }
-    .card h3 { font-size:1.1rem; color:#111; margin-bottom:5px; }
-    .card p { font-size:0.9rem; color:#555; }
+    .card img {
+      width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:15px;
+    }
+    .card h3 { font-size:1.2rem; color:#111; margin-bottom:10px; }
+    .card p { font-size:0.95rem; color:#555; }
 
     .cta {
       background:#2563eb; color:white; text-align:center;
@@ -95,9 +96,9 @@
       <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
     </div>
     <nav id="nav">
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="services.html">Services</a>
+      <a href="services.html" class="active">Services</a>
       <a href="products.html">Products</a>
       <a href="team.html">Team</a>
       <a href="blog.html">Blog</a>
@@ -106,65 +107,58 @@
     <button id="menu-btn">☰</button>
   </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Empowering Africa Through Technology</h1>
-      <p>Ghannaway Tech Systems builds software, deploys networks, and provides hosting & IT services to businesses, institutions, and entrepreneurs across the continent.</p>
-      <a href="services.html">Our Services</a>
-      <a href="contact.html" class="secondary">Contact Sales</a>
-    </div>
-    <div style="flex:1 1 400px;max-width:500px;">
-      <img src="assets/img/hero.jpg" alt="GTS Hero" style="width:100%;border-radius:12px;">
-    </div>
+  <section class="page-hero">
+    <h1>Our Services</h1>
+    <p>Comprehensive technology solutions designed to transform your business.</p>
   </section>
 
   <section class="services">
-    <h2>Our Core Services</h2>
-    <p>We provide end-to-end IT services — from design and deployment to maintenance and cloud hosting.</p>
+    <h2>What We Offer</h2>
+    <p class="subtitle">Our team delivers scalable, secure, and high-performance solutions for all your IT needs.</p>
 
     <div class="grid">
       <div class="card">
+        <img src="assets/img/services/network.jpg" alt="Networking and Infrastructure">
         <h3>IT Infrastructure & Networking</h3>
-        <p>Design, install and maintain networks, servers, CCTV, and on-premise systems.</p>
+        <p>From LAN/WAN installations to CCTV setups and server deployment — we design and manage robust IT infrastructure systems.</p>
       </div>
-      <div class="card">
-        <h3>Software & Mobile Apps</h3>
-        <p>Custom web and mobile applications, integrations, and automation for business workflows.</p>
-      </div>
-      <div class="card">
-        <h3>Cloud, Hosting & DevOps</h3>
-        <p>Cloud migrations, VPS, managed hosting and CI/CD to make systems scalable and secure.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="products">
-    <h2>Products by GTS</h2>
-    <p>Ready-made & custom products created to solve practical business problems.</p>
+      <div class="card">
+        <img src="assets/img/services/software.jpg" alt="Software Development">
+        <h3>Software Development</h3>
+        <p>We build custom business software, mobile apps, web apps, and APIs to help automate operations and boost efficiency.</p>
+      </div>
 
-    <div class="grid">
       <div class="card">
-        <img src="assets/img/products/app1.jpg" alt="GTS Noter">
-        <h3>GTS Noter</h3>
-        <p>A simple, powerful notes & tasks system for teams and individuals.</p>
+        <img src="assets/img/services/cloud.jpg" alt="Cloud Hosting">
+        <h3>Cloud & Hosting Solutions</h3>
+        <p>Secure cloud hosting, virtual private servers (VPS), email hosting, and DevOps automation for scalable systems.</p>
       </div>
+
       <div class="card">
-        <img src="assets/img/products/app2.jpg" alt="GTS CloudDesk">
-        <h3>GTS CloudDesk</h3>
-        <p>Cloud workspace for teams — file sharing, collaboration and backups.</p>
+        <img src="assets/img/services/support.jpg" alt="IT Support">
+        <h3>IT Support & Maintenance</h3>
+        <p>End-to-end technical support for your systems, from on-site maintenance to remote troubleshooting and updates.</p>
       </div>
+
       <div class="card">
-        <img src="assets/img/products/app3.jpg" alt="GTS POS">
-        <h3>GTS POS</h3>
-        <p>Point-of-sale & inventory system for retail and boutiques.</p>
+        <img src="assets/img/services/security.jpg" alt="Cybersecurity">
+        <h3>Cybersecurity Solutions</h3>
+        <p>Network monitoring, data protection, and cybersecurity consulting to keep your organization safe from digital threats.</p>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/services/training.jpg" alt="Training & Consulting">
+        <h3>Training & IT Consulting</h3>
+        <p>Professional training, IT audits, and strategy consulting to empower your teams with cutting-edge technology knowledge.</p>
       </div>
     </div>
   </section>
 
   <section class="cta">
-    <h3>Ready to transform your business?</h3>
-    <p>Schedule a consultation and let GTS design a tailored solution for you.</p>
-    <a href="contact.html">Contact Us</a>
+    <h3>Let’s Build Your Next Project</h3>
+    <p>We’re ready to partner with you for your next big technology challenge.</p>
+    <a href="contact.html">Get a Quote</a>
   </section>
 
   <footer>
