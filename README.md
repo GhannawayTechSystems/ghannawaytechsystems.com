@@ -41,7 +41,7 @@ I'm passionate about building secure and powerful web and technology solutions.
 ## 📣 Connect with Me
 
 [![Facebook](https://img.shields.io/badge/Facebook-GhannawaySmart-1877F2?logo=facebook&logoColor=white)](https://facebook.com/GhannawaySmart)
-[![GitHub](https://img.shields.io/badge/GitHub-GHANNAWAY--TECH-333?logo=github&logoColor=white)](https://github.com/GHANNAWAY-TECH)
+[![GitHub](https://img.shields.io/badge/GitHub-GHANNAWAY--TECH-333?logo=github&logoColor=white)](https://github.com/GhannawayTechSystems)
 [![Portfolio](https://img.shields.io/badge/Portfolio-ghannaway.tech-29a19c?logo=chromecast&logoColor=white)](https://ghannaway.tech)
 
 ---
