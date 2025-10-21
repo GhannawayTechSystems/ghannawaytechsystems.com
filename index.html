@@ -5,82 +5,152 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology." />
   <meta name="theme-color" content="#3b82f6" />
+  <meta name="keywords" content="Ghannaway Tech Systems, GTS, Kenya, IT Services, Software, Hosting, Networking, Cloud, POS, Mobile Apps" />
   <title>Ghannaway Tech Systems — Empowering Africa Through Technology</title>
   <link rel="icon" href="assets/img/logo.png" />
 
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
-    body { background:#f9fafb; color:#222; line-height:1.6; }
+    html { scroll-behavior: smooth; }
+    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
+
+    /* ===== PRELOADER ===== */
+    #preloader {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:linear-gradient(135deg,#1e3a8a,#2563eb,#3b82f6);
+      display:flex; align-items:center; justify-content:center;
+      z-index:10000; animation:fadeOut 0.5s ease forwards;
+    }
+    #preloader.hidden { opacity:0; pointer-events:none; transition:opacity 0.5s ease; }
+    .spinner {
+      width:70px; height:70px;
+      border:6px solid rgba(255,255,255,0.3);
+      border-top:6px solid white;
+      border-radius:50%; animation:spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* ===== BACKGROUND GRAPHICS ===== */
+    .bg-shape {
+      position:absolute; border-radius:50%; filter:blur(80px); opacity:0.25; z-index:0;
+    }
+    .bg1 { top:-100px; left:-100px; width:300px; height:300px; background:#2563eb; animation:float 6s ease-in-out infinite; }
+    .bg2 { bottom:-100px; right:-100px; width:350px; height:350px; background:#3b82f6; animation:float 8s ease-in-out infinite reverse; }
+    @keyframes float {
+      0%,100% { transform:translateY(0) scale(1); }
+      50% { transform:translateY(-20px) scale(1.1); }
+    }
+
+    /* ===== HEADER ===== */
     header {
       position:fixed; top:0; left:0; right:0;
       background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
       display:flex; justify-content:space-between; align-items:center;
-      padding:10px 6%; z-index:100;
+      padding:10px 6%; z-index:100; transition:all 0.4s ease;
     }
-    header img { width:40px; height:40px; object-fit:contain; }
+    header.scrolled { background:#2563eb; color:white; box-shadow:0 3px 8px rgba(0,0,0,0.2); }
+    header.scrolled a { color:white; }
+
+    header img { width:40px; height:40px; object-fit:contain; transition:transform 0.3s; }
+    header img:hover { transform:rotate(10deg) scale(1.1); }
+
     header nav a {
       color:#333; text-decoration:none; margin:0 10px; font-weight:500;
+      position:relative; transition:color 0.3s;
     }
+    header nav a::after {
+      content:""; position:absolute; bottom:-3px; left:0; width:0; height:2px;
+      background:#2563eb; transition:width 0.3s;
+    }
+    header nav a:hover::after { width:100%; }
     header nav a:hover, .active { color:#2563eb; }
-    #menu-btn { display:none; background:none; border:none; font-size:1.6rem; }
+
+    #menu-btn { display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; }
     @media(max-width:768px){
       header nav { display:none; }
       #menu-btn { display:block; color:#333; }
     }
 
+    /* ===== HERO ===== */
     .hero {
+      position:relative;
       background:linear-gradient(135deg,#2563eb,#3b82f6);
-      color:white; padding:120px 6% 80px;
+      color:white; padding:140px 6% 100px;
       display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      overflow:hidden;
     }
-    .hero-text { flex:1 1 400px; max-width:500px; }
-    .hero h1 { font-size:2.5rem; margin-bottom:15px; }
-    .hero p { font-size:1.1rem; margin-bottom:25px; }
+    .hero-text { flex:1 1 400px; max-width:500px; z-index:1; }
+    .hero h1 { font-size:2.7rem; margin-bottom:15px; animation:fadeUp 1s ease 0.3s both; }
+    .hero p { font-size:1.1rem; margin-bottom:25px; animation:fadeUp 1s ease 0.5s both; }
     .hero a {
       display:inline-block; background:white; color:#2563eb;
       padding:10px 20px; border-radius:6px; font-weight:600; text-decoration:none; margin-right:10px;
+      transition:transform 0.3s, box-shadow 0.3s;
     }
+    .hero a:hover { transform:translateY(-3px); box-shadow:0 4px 10px rgba(0,0,0,0.2); }
     .hero a.secondary { background:transparent; color:white; border:2px solid white; }
-    .hero a:hover { opacity:0.9; }
 
-    .services, .products { padding:80px 6%; text-align:center; }
+    .hero img { width:100%; max-width:500px; border-radius:12px; animation:zoomIn 1.2s ease; z-index:1; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
+    @keyframes zoomIn { from { opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);} }
+
+    .animate { opacity:0; }
+    .animate.visible { animation:fadeUp 1s ease forwards; }
+
+    /* ===== CONTENT SECTIONS ===== */
+    .services, .products { padding:100px 6%; text-align:center; position:relative; z-index:1; }
     .services h2, .products h2 { color:#2563eb; font-size:2rem; margin-bottom:10px; }
     .services p, .products p { color:#666; margin-bottom:40px; }
 
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:30px;
-    }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; }
     .card {
       background:white; padding:25px; border-radius:12px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.05); transition:transform 0.3s;
+      box-shadow:0 2px 6px rgba(0,0,0,0.05); transition:transform 0.4s, box-shadow 0.4s;
+      opacity:0; transform:translateY(30px);
     }
-    .card:hover { transform:translateY(-5px); }
+    .card.visible { animation:zoomIn 0.8s ease forwards; }
+    .card:hover { transform:translateY(-5px) scale(1.03); box-shadow:0 4px 12px rgba(0,0,0,0.1); }
     .card img { width:100%; border-radius:10px; height:180px; object-fit:cover; margin-bottom:15px; }
     .card h3 { font-size:1.1rem; color:#111; margin-bottom:5px; }
     .card p { font-size:0.9rem; color:#555; }
 
+    /* ===== CTA ===== */
     .cta {
-      background:#2563eb; color:white; text-align:center;
-      padding:80px 6%;
+      background:linear-gradient(90deg,#2563eb,#1e40af);
+      color:white; text-align:center; padding:80px 6%;
+      position:relative; overflow:hidden;
     }
-    .cta h3 { font-size:1.8rem; margin-bottom:15px; }
+    .cta::before {
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.1),transparent 70%);
+      animation:pulse 6s infinite;
+    }
+    @keyframes pulse {
+      0%,100%{opacity:0.5; transform:scale(1);}
+      50%{opacity:1; transform:scale(1.1);}
+    }
+    .cta h3 { font-size:1.8rem; margin-bottom:15px; position:relative; z-index:1; }
     .cta a {
       display:inline-block; background:white; color:#2563eb;
       padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:600;
+      transition:all 0.3s ease; position:relative; z-index:1;
     }
+    .cta a:hover { transform:scale(1.05); }
 
+    /* ===== FOOTER ===== */
     footer {
       background:#111827; color:#ccc; padding:60px 6% 20px;
+      position:relative; z-index:1;
     }
     footer .footer-grid {
       display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       gap:30px; margin-bottom:20px;
     }
     footer h4, footer h5 { color:#fff; margin-bottom:10px; }
-    footer a { color:#60a5fa; text-decoration:none; }
-    footer a:hover { text-decoration:underline; }
+    footer a { color:#60a5fa; text-decoration:none; transition:color 0.3s; }
+    footer a:hover { color:#93c5fd; }
     footer .bottom {
       text-align:center; border-top:1px solid #333;
       padding-top:15px; font-size:0.85rem;
@@ -89,7 +159,15 @@
 </head>
 <body>
 
-  <header>
+  <!-- PRELOADER -->
+  <div id="preloader"><div class="spinner"></div></div>
+
+  <!-- BACKGROUND GRAPHICS -->
+  <div class="bg-shape bg1"></div>
+  <div class="bg-shape bg2"></div>
+
+  <!-- HEADER -->
+  <header id="header">
     <div style="display:flex;align-items:center;gap:10px;">
       <img src="assets/img/logo.png" alt="GTS Logo">
       <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
@@ -106,6 +184,7 @@
     <button id="menu-btn">☰</button>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-text">
       <h1>Empowering Africa Through Technology</h1>
@@ -113,34 +192,25 @@
       <a href="services.html">Our Services</a>
       <a href="contact.html" class="secondary">Contact Sales</a>
     </div>
-    <div style="flex:1 1 400px;max-width:500px;">
-      <img src="assets/img/hero.png" alt="GTS Hero" style="width:100%;border-radius:12px;">
-    </div>
+    <img src="assets/img/hero.png" alt="GTS Hero">
   </section>
 
+  <!-- SERVICES -->
   <section class="services">
-    <h2>Our Core Services</h2>
-    <p>We provide end-to-end IT services — from design and deployment to maintenance and cloud hosting.</p>
+    <h2 class="animate">Our Core Services</h2>
+    <p class="animate">We provide end-to-end IT services — from design and deployment to maintenance and cloud hosting.</p>
 
     <div class="grid">
-      <div class="card">
-        <h3>IT Infrastructure & Networking</h3>
-        <p>Design, install and maintain networks, servers, CCTV, and on-premise systems.</p>
-      </div>
-      <div class="card">
-        <h3>Software & Mobile Apps</h3>
-        <p>Custom web and mobile applications, integrations, and automation for business workflows.</p>
-      </div>
-      <div class="card">
-        <h3>Cloud, Hosting & DevOps</h3>
-        <p>Cloud migrations, VPS, managed hosting and CI/CD to make systems scalable and secure.</p>
-      </div>
+      <div class="card"><h3>IT Infrastructure & Networking</h3><p>Design, install and maintain networks, servers, CCTV, and on-premise systems.</p></div>
+      <div class="card"><h3>Software & Mobile Apps</h3><p>Custom web and mobile applications, integrations, and automation for business workflows.</p></div>
+      <div class="card"><h3>Cloud, Hosting & DevOps</h3><p>Cloud migrations, VPS, managed hosting and CI/CD to make systems scalable and secure.</p></div>
     </div>
   </section>
 
+  <!-- PRODUCTS -->
   <section class="products">
-    <h2>Products by GTS</h2>
-    <p>Ready-made & custom products created to solve practical business problems.</p>
+    <h2 class="animate">Products by GTS</h2>
+    <p class="animate">Ready-made & custom products created to solve practical business problems.</p>
 
     <div class="grid">
       <div class="card">
@@ -161,12 +231,14 @@
     </div>
   </section>
 
+  <!-- CTA -->
   <section class="cta">
     <h3>Ready to transform your business?</h3>
     <p>Schedule a consultation and let GTS design a tailored solution for you.</p>
     <a href="contact.html">Contact Us</a>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div>
@@ -183,7 +255,7 @@
       </div>
       <div>
         <h5>Contact</h5>
-        <p>Email: <a href="ghannawaytechsystems@gmail.com">info@ghannawaytech.co.ke</a></p>
+        <p>Email: <a href="mailto:info@ghannawaytech.co.ke">info@ghannawaytech.co.ke</a></p>
         <p>Phone: +254 757 041 431</p>
         <p>Nairobi, Kenya</p>
       </div>
@@ -192,30 +264,56 @@
   </footer>
 
   <script>
+    // PRELOADER
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').classList.add('hidden');
+    });
+
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
-	menuBtn.addEventListener('click', () => {
-	  const open = nav.style.display === 'flex';
-	  nav.style.display = open ? 'none' : 'flex';
-	  if (!open) {
-		nav.style.flexDirection = 'column';
-		nav.style.background = '#fff';
-		nav.style.position = 'absolute';
-		nav.style.top = '60px';
-		nav.style.right = '6%';
-		nav.style.padding = '10px';
-		nav.style.border = '1px solid #ddd';
-		nav.style.borderRadius = '6px';
-		nav.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-		nav.style.transition = 'all 0.3s ease';
-	  }
+    const header = document.getElementById('header');
+    const cards = document.querySelectorAll('.card');
+    const animElems = document.querySelectorAll('.animate');
+
+    menuBtn.addEventListener('click', ()=>{
+      const open = nav.style.display==='flex';
+      nav.style.display = open ? 'none' : 'flex';
+      if(!open){
+        Object.assign(nav.style,{
+          flexDirection:'column',
+          background:'#fff',
+          position:'absolute',
+          top:'60px',
+          right:'6%',
+          padding:'10px',
+          border:'1px solid #ddd',
+          borderRadius:'6px',
+          boxShadow:'0 4px 8px rgba(0,0,0,0.1)',
+          transition:'all 0.3s ease'
+        });
+      }
+    });
+
+    // SCROLL REVEAL
+    function revealOnScroll(){
+      const triggerBottom = window.innerHeight * 0.85;
+      cards.forEach(card=>{
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom){ card.classList.add('visible'); }
+      });
+      animElems.forEach(el=>{
+        const top = el.getBoundingClientRect().top;
+        if(top < triggerBottom){ el.classList.add('visible'); }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // HEADER COLOR CHANGE ON SCROLL
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY > 50){ header.classList.add('scrolled'); }
+      else{ header.classList.remove('scrolled'); }
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
