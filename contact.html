@@ -9,67 +9,117 @@
   <link rel="icon" href="assets/img/logo.png" />
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
-    body { background:#f9fafb; color:#222; line-height:1.6; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; scroll-behavior:smooth; }
+    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
+
+    /* Loader */
+    #loader {
+      position:fixed; inset:0; background:#fff;
+      display:flex; justify-content:center; align-items:center;
+      z-index:9999; transition:opacity 0.8s ease;
+    }
+    .spinner {
+      width:60px; height:60px;
+      border:6px solid #e5e7eb; border-top:6px solid #2563eb;
+      border-radius:50%; animation:spin 1s linear infinite;
+    }
+    @keyframes spin { 100% { transform:rotate(360deg); } }
+
+    /* Header */
     header {
       position:fixed; top:0; left:0; right:0;
-      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+      background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(10px);
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
       display:flex; justify-content:space-between; align-items:center;
       padding:10px 6%; z-index:100;
+      transition:all 0.3s ease;
     }
     header img { width:40px; height:40px; object-fit:contain; }
     header nav a {
-      color:#333; text-decoration:none; margin:0 10px; font-weight:500;
+      color:#333; text-decoration:none; margin:0 10px; font-weight:500; position:relative;
     }
-    header nav a:hover, .active { color:#2563eb; }
+    header nav a::after {
+      content:""; position:absolute; bottom:-3px; left:0;
+      width:0%; height:2px; background:#2563eb; transition:width 0.3s;
+    }
+    header nav a:hover::after, .active::after { width:100%; }
     #menu-btn { display:none; background:none; border:none; font-size:1.6rem; }
     @media(max-width:768px){
-      header nav { display:none; }
+      header nav { display:none; flex-direction:column; }
       #menu-btn { display:block; color:#333; }
     }
 
+    /* Hero */
     .page-hero {
       background:linear-gradient(135deg,#2563eb,#3b82f6);
       color:white; padding:120px 6% 60px;
-      text-align:center;
+      text-align:center; position:relative; overflow:hidden;
     }
-    .page-hero h1 { font-size:2.5rem; margin-bottom:10px; }
-    .page-hero p { font-size:1.1rem; }
+    .page-hero::after {
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(circle at top left,rgba(255,255,255,0.15),transparent);
+      animation:moveGlow 6s infinite alternate ease-in-out;
+    }
+    @keyframes moveGlow {
+      from { background-position:0% 0%; }
+      to { background-position:100% 100%; }
+    }
+    .page-hero h1 { font-size:2.7rem; margin-bottom:10px; animation:fadeInDown 1s ease forwards; opacity:0; }
+    .page-hero p { font-size:1.1rem; animation:fadeIn 1.5s ease forwards; opacity:0; }
 
+    /* Contact Section */
     .contact-section {
-      padding:80px 6%;
+      padding:90px 6%;
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
       gap:40px;
       align-items:start;
     }
+    .contact-info, form {
+      opacity:0; transform:translateY(40px);
+      transition:all 0.8s ease;
+    }
 
     .contact-info h3 {
-      color:#2563eb; font-size:1.5rem; margin-bottom:10px;
+      color:#2563eb; font-size:1.6rem; margin-bottom:15px;
     }
     .contact-info p { margin-bottom:10px; color:#555; }
     .contact-info a { color:#2563eb; text-decoration:none; }
     .contact-info a:hover { text-decoration:underline; }
+    iframe {
+      width:100%; height:300px; border:none; border-radius:12px;
+      margin-top:15px; box-shadow:0 3px 10px rgba(0,0,0,0.1);
+      transition:transform 0.4s;
+    }
+    iframe:hover { transform:scale(1.01); }
 
     form {
       background:white; padding:30px; border-radius:12px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.05);
+      box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      transition:transform 0.3s, box-shadow 0.3s;
     }
-    form h3 { margin-bottom:20px; color:#2563eb; }
+    form:hover {
+      transform:translateY(-4px);
+      box-shadow:0 8px 25px rgba(37,99,235,0.15);
+    }
+    form h3 { margin-bottom:20px; color:#2563eb; font-size:1.3rem; }
     form input, form textarea {
       width:100%; padding:12px; margin-bottom:15px;
       border:1px solid #ddd; border-radius:6px; font-size:1rem;
+      transition:border-color 0.3s;
+    }
+    form input:focus, form textarea:focus {
+      border-color:#2563eb; outline:none;
     }
     form button {
       background:#2563eb; color:white; border:none;
       padding:12px 25px; border-radius:6px; font-weight:600; cursor:pointer;
+      transition:all 0.3s ease;
     }
-    form button:hover { opacity:0.9; }
+    form button:hover { background:#1e40af; }
 
-    iframe {
-      width:100%; height:300px; border:none; border-radius:12px;
-    }
-
+    /* Footer */
     footer {
       background:#111827; color:#ccc; padding:60px 6% 20px; margin-top:60px;
     }
@@ -84,9 +134,15 @@
       text-align:center; border-top:1px solid #333;
       padding-top:15px; font-size:0.85rem;
     }
+
+    /* Animations */
+    @keyframes fadeInDown { from {opacity:0;transform:translateY(-20px);} to {opacity:1;transform:none;} }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
   </style>
 </head>
 <body>
+
+  <div id="loader"><div class="spinner"></div></div>
 
   <header>
     <div style="display:flex;align-items:center;gap:10px;">
@@ -117,7 +173,6 @@
       <p>Phone: +254 757 041 431</p>
       <p>Location: Nairobi, Kenya</p>
       <p>Hours: 24hrs Support</p>
-      <br>
       <iframe src="https://www.google.com/maps?q=Nairobi,+Kenya&output=embed"></iframe>
     </div>
 
@@ -146,7 +201,7 @@
       </div>
       <div>
         <h5>Contact</h5>
-        <p>Email: <a href="mailto:ghannawaytechsystems@gmail.com">info@ghannawaytech.co.ke</a></p>
+        <p>Email: <a href="mailto:info@ghannawaytech.co.ke">info@ghannawaytech.co.ke</a></p>
         <p>Phone: +254 757 041 431</p>
         <p>Nairobi, Kenya</p>
       </div>
@@ -155,28 +210,47 @@
   </footer>
 
   <script>
+    // Loader
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = "0";
+      setTimeout(() => loader.style.display = "none", 800);
+    });
+
+    // Mobile Menu
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
     menuBtn.addEventListener('click', ()=>{
       nav.style.display = (nav.style.display==='flex') ? 'none' : 'flex';
-      nav.style.flexDirection = 'column';
-      nav.style.background = '#fff';
       nav.style.position = 'absolute';
-      nav.style.top = '60px';
       nav.style.right = '6%';
+      nav.style.top = '60px';
+      nav.style.background = '#fff';
       nav.style.padding = '10px';
-      nav.style.border = '1px solid #ddd';
-      nav.style.borderRadius = '6px';
+      nav.style.borderRadius = '8px';
+      nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
     });
 
-    // simple contact alert (replace with real backend later)
+    // Contact Form feedback
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Thank you for contacting Ghannaway Tech Systems. We will get back to you shortly.');
+      alert('✅ Thank you for contacting Ghannaway Tech Systems! We will get back to you shortly.');
       this.reset();
     });
-  </script>
 
+    // Scroll animations
+    const elements = document.querySelectorAll('.contact-info, form');
+    const reveal = () => {
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect().top;
+        if (rect < window.innerHeight - 100) {
+          el.style.opacity = 1;
+          el.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    reveal();
+  </script>
 </body>
 </html>
-

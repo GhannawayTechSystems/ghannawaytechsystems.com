@@ -10,34 +10,68 @@
 
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
-    body { background:#f9fafb; color:#222; line-height:1.6; }
+    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
+
+    /* ===== Loader ===== */
+    #loader {
+      position:fixed; inset:0; background:#fff;
+      display:flex; justify-content:center; align-items:center;
+      z-index:200;
+    }
+    .spinner {
+      width:50px; height:50px;
+      border:5px solid #e0e7ff;
+      border-top:5px solid #2563eb;
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform:rotate(360deg); }
+    }
+
+    /* ===== Header ===== */
     header {
       position:fixed; top:0; left:0; right:0;
       background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
       display:flex; justify-content:space-between; align-items:center;
       padding:10px 6%; z-index:100;
+      animation:slideDown 0.7s ease;
+    }
+    @keyframes slideDown {
+      from { transform:translateY(-80px); opacity:0; }
+      to { transform:translateY(0); opacity:1; }
     }
     header img { width:40px; height:40px; object-fit:contain; }
     header nav a {
       color:#333; text-decoration:none; margin:0 10px; font-weight:500;
+      transition:color 0.3s;
     }
     header nav a:hover, .active { color:#2563eb; }
-    #menu-btn { display:none; background:none; border:none; font-size:1.6rem; }
+    #menu-btn { display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; }
     @media(max-width:768px){
       header nav { display:none; }
       #menu-btn { display:block; color:#333; }
     }
 
+    /* ===== Hero ===== */
     .page-hero {
-      background:linear-gradient(135deg,#2563eb,#3b82f6);
-      color:white; padding:120px 6% 60px;
-      text-align:center;
+      background:linear-gradient(135deg,#2563eb,#3b82f6,#2563eb);
+      background-size:300% 300%;
+      animation:gradient 8s ease infinite;
+      color:white; padding:120px 6% 60px; text-align:center;
     }
-    .page-hero h1 { font-size:2.5rem; margin-bottom:10px; }
-    .page-hero p { font-size:1.1rem; }
+    @keyframes gradient {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    .page-hero h1 { font-size:2.5rem; margin-bottom:10px; animation:fadeIn 1.2s ease; }
+    .page-hero p { font-size:1.1rem; opacity:0.9; animation:fadeIn 1.5s ease; }
 
+    /* ===== Blog Section ===== */
     .blog-section {
       padding:80px 6%;
+      animation:fadeUp 1.3s ease;
     }
     .blog-section h2 {
       color:#2563eb; font-size:2rem; text-align:center; margin-bottom:10px;
@@ -55,38 +89,47 @@
       background:white; border-radius:12px;
       box-shadow:0 2px 6px rgba(0,0,0,0.05);
       overflow:hidden;
-      transition:transform 0.3s;
+      transform:translateY(20px);
+      opacity:0;
+      transition:transform 0.6s ease, opacity 0.6s ease;
     }
-    .post:hover { transform:translateY(-5px); }
+    .post.visible {
+      transform:translateY(0);
+      opacity:1;
+    }
+    .post:hover {
+      transform:translateY(-5px) scale(1.02);
+      box-shadow:0 8px 16px rgba(0,0,0,0.08);
+    }
     .post img {
       width:100%; height:200px; object-fit:cover;
     }
-    .post .content {
-      padding:20px;
-    }
-    .post h3 {
-      font-size:1.2rem; color:#111; margin-bottom:8px;
-    }
-    .post p {
-      color:#555; font-size:0.9rem; margin-bottom:12px;
-    }
+    .post .content { padding:20px; }
+    .post h3 { font-size:1.2rem; color:#111; margin-bottom:8px; }
+    .post p { color:#555; font-size:0.9rem; margin-bottom:12px; }
     .post a {
       color:#2563eb; text-decoration:none; font-weight:600;
+      transition:color 0.3s;
     }
-    .post a:hover { text-decoration:underline; }
+    .post a:hover { color:#1d4ed8; text-decoration:underline; }
 
+    /* ===== CTA ===== */
     .cta {
       background:#2563eb; color:white; text-align:center;
-      padding:80px 6%;
+      padding:80px 6%; animation:fadeUp 1.5s ease;
     }
     .cta h3 { font-size:1.8rem; margin-bottom:15px; }
     .cta a {
       display:inline-block; background:white; color:#2563eb;
       padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:600;
+      transition:background 0.3s, transform 0.3s;
     }
+    .cta a:hover { background:#e0e7ff; transform:scale(1.05); }
 
+    /* ===== Footer ===== */
     footer {
       background:#111827; color:#ccc; padding:60px 6% 20px;
+      animation:fadeIn 1.5s ease;
     }
     footer .footer-grid {
       display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -99,9 +142,22 @@
       text-align:center; border-top:1px solid #333;
       padding-top:15px; font-size:0.85rem;
     }
+
+    /* ===== Animations ===== */
+    @keyframes fadeIn {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+    @keyframes fadeUp {
+      from { transform:translateY(40px); opacity:0; }
+      to { transform:translateY(0); opacity:1; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Loader -->
+  <div id="loader"><div class="spinner"></div></div>
 
   <header>
     <div style="display:flex;align-items:center;gap:10px;">
@@ -191,7 +247,7 @@
       <div>
         <h5>Contact</h5>
         <p>Email: <a href="mailto:info@ghannawaytech.co.ke">info@ghannawaytech.co.ke</a></p>
-        <p>Phone: +254 7xx xxx xxx</p>
+        <p>Phone: +254 757 041 431</p>
         <p>Oloitoktok, Kenya</p>
       </div>
     </div>
@@ -199,6 +255,12 @@
   </footer>
 
   <script>
+    // Loader
+    window.addEventListener("load", () => {
+      document.getElementById("loader").style.display = "none";
+    });
+
+    // Menu toggle
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
     menuBtn.addEventListener('click', ()=>{
@@ -212,6 +274,15 @@
       nav.style.border = '1px solid #ddd';
       nav.style.borderRadius = '6px';
     });
+
+    // Scroll reveal
+    const posts = document.querySelectorAll('.post');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    posts.forEach(post => observer.observe(post));
   </script>
 
 </body>

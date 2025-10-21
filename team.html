@@ -9,59 +9,98 @@
   <link rel="icon" href="assets/img/logo.png" />
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
-    body { background:#f9fafb; color:#222; line-height:1.6; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; scroll-behavior:smooth; }
+    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
+
+    /* Loading Spinner */
+    #loader {
+      position:fixed; inset:0; background:#fff;
+      display:flex; justify-content:center; align-items:center;
+      z-index:9999; transition:opacity 0.8s ease;
+    }
+    .spinner {
+      width:60px; height:60px;
+      border:6px solid #e5e7eb; border-top:6px solid #2563eb;
+      border-radius:50%; animation:spin 1s linear infinite;
+    }
+    @keyframes spin { 100% { transform:rotate(360deg); } }
+
+    /* Header */
     header {
       position:fixed; top:0; left:0; right:0;
-      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+      background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(10px);
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
       display:flex; justify-content:space-between; align-items:center;
       padding:10px 6%; z-index:100;
+      transition:all 0.3s ease;
     }
     header img { width:40px; height:40px; object-fit:contain; }
     header nav a {
-      color:#333; text-decoration:none; margin:0 10px; font-weight:500;
+      color:#333; text-decoration:none; margin:0 10px; font-weight:500; position:relative;
     }
-    header nav a:hover, .active { color:#2563eb; }
+    header nav a::after {
+      content:""; position:absolute; bottom:-3px; left:0;
+      width:0%; height:2px; background:#2563eb; transition:width 0.3s;
+    }
+    header nav a:hover::after, .active::after { width:100%; }
     #menu-btn { display:none; background:none; border:none; font-size:1.6rem; }
     @media(max-width:768px){
-      header nav { display:none; }
+      header nav { display:none; flex-direction:column; }
       #menu-btn { display:block; color:#333; }
     }
 
+    /* Hero */
     .page-hero {
       background:linear-gradient(135deg,#2563eb,#3b82f6);
       color:white; padding:120px 6% 60px;
-      text-align:center;
+      text-align:center; position:relative; overflow:hidden;
     }
-    .page-hero h1 { font-size:2.5rem; margin-bottom:10px; }
-    .page-hero p { font-size:1.1rem; }
+    .page-hero::after {
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(circle at top left,rgba(255,255,255,0.15),transparent);
+      animation:moveGlow 6s infinite alternate ease-in-out;
+    }
+    @keyframes moveGlow {
+      from { background-position:0% 0%; }
+      to { background-position:100% 100%; }
+    }
+    .page-hero h1 { font-size:2.7rem; margin-bottom:10px; animation:fadeInDown 1s ease forwards; opacity:0; }
+    .page-hero p { font-size:1.1rem; animation:fadeIn 1.5s ease forwards; opacity:0; }
 
-    .team {
-      padding:80px 6%;
-    }
+    /* Team Section */
+    .team { padding:80px 6%; }
     .team h2 {
       color:#2563eb; font-size:2rem; text-align:center; margin-bottom:10px;
+      opacity:0; transform:translateY(20px); transition:all 0.8s ease;
     }
     .team p.subtitle {
       color:#666; text-align:center; margin-bottom:50px;
+      opacity:0; transform:translateY(20px); transition:all 0.8s ease 0.2s;
     }
-
     .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:30px;
-      justify-content:center;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px; justify-content:center;
     }
     .member {
       background:white; padding:25px; border-radius:12px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.05); text-align:center;
-      transition:transform 0.3s;
+      box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      text-align:center; transition:transform 0.4s, box-shadow 0.4s;
+      opacity:0; transform:translateY(30px);
     }
-    .member:hover { transform:translateY(-5px); }
+    .member:hover {
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 8px 25px rgba(37,99,235,0.15);
+    }
     .member img {
       width:120px; height:120px; border-radius:50%;
       object-fit:cover; margin-bottom:15px;
       border:3px solid #2563eb;
+      animation:float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-5px);}
     }
     .member h3 { font-size:1.2rem; color:#111; margin-bottom:5px; }
     .member span {
@@ -72,20 +111,36 @@
       display:flex; justify-content:center; gap:10px;
     }
     .social a {
-      color:#2563eb; font-size:1.2rem; text-decoration:none;
+      color:#2563eb; font-size:1.3rem; text-decoration:none;
+      transition:transform 0.3s,color 0.3s;
     }
-    .social a:hover { color:#1e40af; }
+    .social a:hover { transform:scale(1.2); color:#1e40af; }
 
+    /* CTA */
     .cta {
-      background:#2563eb; color:white; text-align:center;
-      padding:80px 6%;
+      background:linear-gradient(135deg,#2563eb,#1e40af);
+      color:white; text-align:center;
+      padding:90px 6%; position:relative;
+      overflow:hidden;
     }
-    .cta h3 { font-size:1.8rem; margin-bottom:15px; }
+    .cta::before {
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(circle at center,rgba(255,255,255,0.2),transparent 70%);
+      opacity:0.3; animation:pulse 6s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.05);}
+    }
+    .cta h3 { font-size:1.9rem; margin-bottom:15px; }
     .cta a {
       display:inline-block; background:white; color:#2563eb;
-      padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:600;
+      padding:12px 25px; border-radius:8px; text-decoration:none;
+      font-weight:600; transition:all 0.3s;
     }
+    .cta a:hover { background:#e0e7ff; }
 
+    /* Footer */
     footer {
       background:#111827; color:#ccc; padding:60px 6% 20px;
     }
@@ -100,9 +155,15 @@
       text-align:center; border-top:1px solid #333;
       padding-top:15px; font-size:0.85rem;
     }
+
+    /* Animations */
+    @keyframes fadeInDown { from {opacity:0;transform:translateY(-20px);} to {opacity:1;transform:none;} }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
   </style>
 </head>
 <body>
+
+  <div id="loader"><div class="spinner"></div></div>
 
   <header>
     <div style="display:flex;align-items:center;gap:10px;">
@@ -144,7 +205,7 @@
       </div>
 
       <div class="member">
-        <img src="assets/img/team/techlead.jpg" alt="Tech Lead">
+        <img src="assets/img/team/techlead.jpg" alt="Mary Atieno">
         <h3>Mary Atieno</h3>
         <span>Lead Software Engineer</span>
         <p>Expert in full-stack development and system architecture. Ensures product quality and scalability.</p>
@@ -155,7 +216,7 @@
       </div>
 
       <div class="member">
-        <img src="assets/img/team/network.jpg" alt="Network Engineer">
+        <img src="assets/img/team/network.jpg" alt="John Mwangi">
         <h3>John Mwangi</h3>
         <span>Network & Infrastructure Engineer</span>
         <p>Specialist in cloud deployment, security, and networking — keeping systems running efficiently.</p>
@@ -166,7 +227,7 @@
       </div>
 
       <div class="member">
-        <img src="assets/img/team/support.jpg" alt="Support Lead">
+        <img src="assets/img/team/support.jpg" alt="Sarah Wanjiku">
         <h3>Sarah Wanjiku</h3>
         <span>Customer Support Lead</span>
         <p>Dedicated to delivering the best client experience and after-sales technical support across all services.</p>
@@ -209,19 +270,40 @@
   </footer>
 
   <script>
+    // Loader
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = "0";
+      setTimeout(() => loader.style.display = "none", 800);
+    });
+
+    // Mobile Menu
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
     menuBtn.addEventListener('click', ()=>{
       nav.style.display = (nav.style.display==='flex') ? 'none' : 'flex';
-      nav.style.flexDirection = 'column';
-      nav.style.background = '#fff';
       nav.style.position = 'absolute';
-      nav.style.top = '60px';
       nav.style.right = '6%';
+      nav.style.top = '60px';
+      nav.style.background = '#fff';
       nav.style.padding = '10px';
-      nav.style.border = '1px solid #ddd';
-      nav.style.borderRadius = '6px';
+      nav.style.borderRadius = '8px';
+      nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
     });
+
+    // Scroll Animations
+    const revealElements = document.querySelectorAll('.team h2, .team p.subtitle, .member');
+    const revealOnScroll = () => {
+      revealElements.forEach(el => {
+        const rect = el.getBoundingClientRect().top;
+        if(rect < window.innerHeight - 100) {
+          el.style.opacity = 1;
+          el.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
   </script>
 </body>
 </html>

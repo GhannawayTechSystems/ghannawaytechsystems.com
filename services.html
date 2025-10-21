@@ -10,16 +10,33 @@
 
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
-    body { background:#f9fafb; color:#222; line-height:1.6; }
+    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
+
+    /* Loading Spinner */
+    #loader {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:white; display:flex; align-items:center; justify-content:center;
+      z-index:2000; transition:opacity 0.6s ease;
+    }
+    .spinner {
+      width:60px; height:60px; border:6px solid #e5e7eb;
+      border-top-color:#2563eb; border-radius:50%; animation:spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform:rotate(360deg); }
+    }
+
     header {
       position:fixed; top:0; left:0; right:0;
       background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
       display:flex; justify-content:space-between; align-items:center;
       padding:10px 6%; z-index:100;
+      animation:fadeDown 0.8s ease-in-out;
     }
     header img { width:40px; height:40px; object-fit:contain; }
     header nav a {
       color:#333; text-decoration:none; margin:0 10px; font-weight:500;
+      transition:color 0.3s;
     }
     header nav a:hover, .active { color:#2563eb; }
     #menu-btn { display:none; background:none; border:none; font-size:1.6rem; }
@@ -29,15 +46,25 @@
     }
 
     .page-hero {
-      background:linear-gradient(135deg,#2563eb,#3b82f6);
+      background:linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
       color:white; padding:120px 6% 60px;
-      text-align:center;
+      text-align:center; position:relative; overflow:hidden;
     }
-    .page-hero h1 { font-size:2.5rem; margin-bottom:10px; }
-    .page-hero p { font-size:1.1rem; }
+    .page-hero::after {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(circle at 20% 40%, rgba(255,255,255,0.15), transparent 70%);
+      animation:moveBg 6s infinite alternate ease-in-out;
+    }
+    @keyframes moveBg {
+      0% { background-position:0 0; }
+      100% { background-position:100px 100px; }
+    }
+    .page-hero h1 { font-size:2.5rem; margin-bottom:10px; position:relative; z-index:1; }
+    .page-hero p { font-size:1.1rem; position:relative; z-index:1; }
 
     .services {
       padding:80px 6%;
+      animation:fadeUp 1s ease;
     }
     .services h2 {
       color:#2563eb; font-size:2rem; text-align:center; margin-bottom:10px;
@@ -53,9 +80,14 @@
     }
     .card {
       background:white; padding:25px; border-radius:12px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.05); transition:transform 0.3s;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+      transition:transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s;
+      opacity:0; transform:translateY(30px);
     }
-    .card:hover { transform:translateY(-5px); }
+    .card.visible {
+      opacity:1; transform:translateY(0);
+    }
+    .card:hover { transform:translateY(-5px) scale(1.02); box-shadow:0 8px 18px rgba(0,0,0,0.08); }
     .card img {
       width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:15px;
     }
@@ -63,17 +95,22 @@
     .card p { font-size:0.95rem; color:#555; }
 
     .cta {
-      background:#2563eb; color:white; text-align:center;
+      background:linear-gradient(135deg,#3b82f6,#2563eb);
+      color:white; text-align:center;
       padding:80px 6%;
+      animation:fadeUp 1s ease;
     }
     .cta h3 { font-size:1.8rem; margin-bottom:15px; }
     .cta a {
       display:inline-block; background:white; color:#2563eb;
       padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:600;
+      transition:transform 0.3s;
     }
+    .cta a:hover { transform:scale(1.05); }
 
     footer {
       background:#111827; color:#ccc; padding:60px 6% 20px;
+      animation:fadeUp 1s ease;
     }
     footer .footer-grid {
       display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -86,9 +123,24 @@
       text-align:center; border-top:1px solid #333;
       padding-top:15px; font-size:0.85rem;
     }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(40px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
 
   <header>
     <div style="display:flex;align-items:center;gap:10px;">
@@ -117,41 +169,12 @@
     <p class="subtitle">Our team delivers scalable, secure, and high-performance solutions for all your IT needs.</p>
 
     <div class="grid">
-      <div class="card">
-        <img src="assets/img/services/network.jpg" alt="Networking and Infrastructure">
-        <h3>IT Infrastructure & Networking</h3>
-        <p>From LAN/WAN installations to CCTV setups and server deployment — we design and manage robust IT infrastructure systems.</p>
-      </div>
-
-      <div class="card">
-        <img src="assets/img/services/software.jpg" alt="Software Development">
-        <h3>Software Development</h3>
-        <p>We build custom business software, mobile apps, web apps, and APIs to help automate operations and boost efficiency.</p>
-      </div>
-
-      <div class="card">
-        <img src="assets/img/services/cloud.jpg" alt="Cloud Hosting">
-        <h3>Cloud & Hosting Solutions</h3>
-        <p>Secure cloud hosting, virtual private servers (VPS), email hosting, and DevOps automation for scalable systems.</p>
-      </div>
-
-      <div class="card">
-        <img src="assets/img/services/support.jpg" alt="IT Support">
-        <h3>IT Support & Maintenance</h3>
-        <p>End-to-end technical support for your systems, from on-site maintenance to remote troubleshooting and updates.</p>
-      </div>
-
-      <div class="card">
-        <img src="assets/img/services/security.jpg" alt="Cybersecurity">
-        <h3>Cybersecurity Solutions</h3>
-        <p>Network monitoring, data protection, and cybersecurity consulting to keep your organization safe from digital threats.</p>
-      </div>
-
-      <div class="card">
-        <img src="assets/img/services/training.jpg" alt="Training & Consulting">
-        <h3>Training & IT Consulting</h3>
-        <p>Professional training, IT audits, and strategy consulting to empower your teams with cutting-edge technology knowledge.</p>
-      </div>
+      <div class="card"><img src="assets/img/services/network.jpg"><h3>IT Infrastructure & Networking</h3><p>From LAN/WAN installations to CCTV setups and server deployment — we design and manage robust IT infrastructure systems.</p></div>
+      <div class="card"><img src="assets/img/services/software.jpg"><h3>Software Development</h3><p>We build custom business software, mobile apps, web apps, and APIs to help automate operations and boost efficiency.</p></div>
+      <div class="card"><img src="assets/img/services/cloud.jpg"><h3>Cloud & Hosting Solutions</h3><p>Secure cloud hosting, VPS, email hosting, and DevOps automation for scalable systems.</p></div>
+      <div class="card"><img src="assets/img/services/support.jpg"><h3>IT Support & Maintenance</h3><p>End-to-end technical support for your systems, from on-site maintenance to remote troubleshooting and updates.</p></div>
+      <div class="card"><img src="assets/img/services/security.jpg"><h3>Cybersecurity Solutions</h3><p>Network monitoring, data protection, and cybersecurity consulting to keep your organization safe from digital threats.</p></div>
+      <div class="card"><img src="assets/img/services/training.jpg"><h3>Training & IT Consulting</h3><p>Professional training, IT audits, and strategy consulting to empower your teams with cutting-edge technology knowledge.</p></div>
     </div>
   </section>
 
@@ -186,6 +209,14 @@
   </footer>
 
   <script>
+    // Loader
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = "0";
+      setTimeout(()=> loader.style.display="none", 600);
+    });
+
+    // Mobile Menu
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
     menuBtn.addEventListener('click', ()=>{
@@ -199,6 +230,18 @@
       nav.style.border = '1px solid #ddd';
       nav.style.borderRadius = '6px';
     });
+
+    // Scroll animation for cards
+    const cards = document.querySelectorAll('.card');
+    const revealCards = () => {
+      const trigger = window.innerHeight * 0.85;
+      cards.forEach(card=>{
+        const rect = card.getBoundingClientRect();
+        if(rect.top < trigger) card.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', revealCards);
+    revealCards();
   </script>
 </body>
 </html>
