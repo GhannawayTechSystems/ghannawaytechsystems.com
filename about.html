@@ -10,17 +10,55 @@
 
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
-    body { background:#f9fafb; color:#222; line-height:1.6; }
+    html { scroll-behavior: smooth; }
+    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
+
+    /* ===== PRELOADER ===== */
+    #preloader {
+      position:fixed; inset:0;
+      background:linear-gradient(135deg,#1e3a8a,#2563eb,#3b82f6);
+      display:flex; justify-content:center; align-items:center;
+      z-index:9999;
+    }
+    #preloader.hidden { opacity:0; pointer-events:none; transition:opacity 0.5s ease; }
+    .spinner {
+      width:70px; height:70px;
+      border:6px solid rgba(255,255,255,0.3);
+      border-top:6px solid white;
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* ===== BACKGROUND SHAPES ===== */
+    .bg-shape {
+      position:absolute; border-radius:50%; filter:blur(90px); opacity:0.25; z-index:0;
+    }
+    .bg1 { top:-100px; left:-100px; width:300px; height:300px; background:#2563eb; animation:float 6s ease-in-out infinite; }
+    .bg2 { bottom:-100px; right:-100px; width:350px; height:350px; background:#3b82f6; animation:float 8s ease-in-out infinite reverse; }
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-20px); }
+    }
+
+    /* ===== HEADER ===== */
     header {
       position:fixed; top:0; left:0; right:0;
       background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
       display:flex; justify-content:space-between; align-items:center;
-      padding:10px 6%; z-index:100;
+      padding:10px 6%; z-index:1000; transition:all 0.4s ease;
     }
+    header.scrolled { background:#2563eb; color:white; box-shadow:0 3px 8px rgba(0,0,0,0.2); }
+    header.scrolled a { color:white; }
     header img { width:40px; height:40px; object-fit:contain; }
     header nav a {
-      color:#333; text-decoration:none; margin:0 10px; font-weight:500;
+      color:#333; text-decoration:none; margin:0 10px; font-weight:500; position:relative;
     }
+    header nav a::after {
+      content:""; position:absolute; bottom:-3px; left:0; width:0; height:2px;
+      background:#2563eb; transition:width 0.3s;
+    }
+    header nav a:hover::after { width:100%; }
     header nav a:hover, .active { color:#2563eb; }
     #menu-btn { display:none; background:none; border:none; font-size:1.6rem; }
     @media(max-width:768px){
@@ -28,18 +66,21 @@
       #menu-btn { display:block; color:#333; }
     }
 
-    main { padding-top:90px; }
+    main { padding-top:90px; position:relative; z-index:1; }
 
+    /* ===== HERO ===== */
     .hero {
       background:linear-gradient(135deg,#2563eb,#3b82f6);
       color:white; text-align:center;
-      padding:100px 6% 80px;
+      padding:120px 6% 90px;
+      animation:fadeIn 1s ease forwards;
     }
     .hero h1 { font-size:2.5rem; margin-bottom:15px; }
     .hero p { font-size:1.1rem; max-width:700px; margin:0 auto; }
 
+    /* ===== CONTENT ===== */
     .content {
-      padding:60px 6%;
+      padding:80px 6%;
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
       gap:50px;
@@ -47,21 +88,26 @@
     }
     .content img {
       width:100%; border-radius:10px; object-fit:cover;
+      opacity:0; transform:translateY(30px);
     }
     .content-text h2 {
       color:#2563eb; font-size:1.8rem; margin-bottom:15px;
+      opacity:0; transform:translateY(30px);
     }
     .content-text p {
       color:#555; margin-bottom:15px;
+      opacity:0; transform:translateY(30px);
     }
 
+    /* ===== MISSION ===== */
     .mission {
       background:#eef2ff; text-align:center;
-      padding:80px 6%;
+      padding:100px 6%; opacity:0; transform:translateY(30px);
     }
     .mission h2 { color:#2563eb; font-size:1.8rem; margin-bottom:20px; }
     .mission p { color:#444; max-width:800px; margin:0 auto 10px; }
 
+    /* ===== FOOTER ===== */
     footer {
       background:#111827; color:#ccc; padding:60px 6% 20px;
     }
@@ -70,17 +116,31 @@
       gap:30px; margin-bottom:20px;
     }
     footer h4, footer h5 { color:#fff; margin-bottom:10px; }
-    footer a { color:#60a5fa; text-decoration:none; }
-    footer a:hover { text-decoration:underline; }
+    footer a { color:#60a5fa; text-decoration:none; transition:color 0.3s; }
+    footer a:hover { color:#93c5fd; }
     footer .bottom {
       text-align:center; border-top:1px solid #333;
       padding-top:15px; font-size:0.85rem;
     }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    .visible { animation:fadeIn 1s ease forwards; }
   </style>
 </head>
 <body>
 
-  <header>
+  <!-- PRELOADER -->
+  <div id="preloader"><div class="spinner"></div></div>
+
+  <!-- BACKGROUND GRAPHICS -->
+  <div class="bg-shape bg1"></div>
+  <div class="bg-shape bg2"></div>
+
+  <header id="header">
     <div style="display:flex;align-items:center;gap:10px;">
       <img src="assets/img/logo.png" alt="GTS Logo">
       <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
@@ -106,7 +166,7 @@
     <section class="content">
       <div class="content-text">
         <h2>Who We Are</h2>
-        <p>Founded by visionary technologist Elvis Ndombi, Ghannaway Tech Systems (GTS) delivers smart, scalable technology solutions for businesses, institutions, and individuals. Our expertise spans software development, cloud infrastructure, networking, and automation.</p>
+        <p>Founded by visionary technologist <strong>Elvis Ndombi</strong>, Ghannaway Tech Systems (GTS) delivers smart, scalable technology solutions for businesses, institutions, and individuals. Our expertise spans software development, cloud infrastructure, networking, and automation.</p>
         <p>At GTS, we believe that technology should simplify life and drive growth. We build tools, platforms, and systems that enable people to work smarter, connect seamlessly, and achieve more.</p>
       </div>
       <div>
@@ -142,7 +202,7 @@
       </div>
       <div>
         <h5>Contact</h5>
-        <p>Email: <a href="mailto:ghannawaytechsystems@gmail.com">info@ghannawaytech.co.ke</a></p>
+        <p>Email: <a href="mailto:info@ghannawaytech.co.ke">info@ghannawaytech.co.ke</a></p>
         <p>Phone: +254 757 041 431</p>
         <p>Oloitoktok, Kenya</p>
       </div>
@@ -151,21 +211,50 @@
   </footer>
 
   <script>
+    // PRELOADER
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').classList.add('hidden');
+    });
+
+    // MENU
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
+    const header = document.getElementById('header');
     menuBtn.addEventListener('click', ()=>{
-      nav.style.display = (nav.style.display==='flex') ? 'none' : 'flex';
-      nav.style.flexDirection = 'column';
-      nav.style.background = '#fff';
-      nav.style.position = 'absolute';
-      nav.style.top = '60px';
-      nav.style.right = '6%';
-      nav.style.padding = '10px';
-      nav.style.border = '1px solid #ddd';
-      nav.style.borderRadius = '6px';
+      const open = nav.style.display === 'flex';
+      nav.style.display = open ? 'none' : 'flex';
+      if(!open){
+        Object.assign(nav.style,{
+          flexDirection:'column',
+          background:'#fff',
+          position:'absolute',
+          top:'60px',
+          right:'6%',
+          padding:'10px',
+          border:'1px solid #ddd',
+          borderRadius:'6px',
+          boxShadow:'0 4px 8px rgba(0,0,0,0.1)',
+        });
+      }
+    });
+
+    // SCROLL EFFECTS
+    const elements = document.querySelectorAll('.content-text h2, .content-text p, .content img, .mission');
+    function reveal() {
+      const triggerBottom = window.innerHeight * 0.85;
+      elements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < triggerBottom) el.classList.add('visible');
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    reveal();
+
+    // HEADER COLOR ON SCROLL
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 50) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
     });
   </script>
 </body>
 </html>
-
-
