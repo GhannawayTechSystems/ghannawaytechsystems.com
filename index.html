@@ -194,16 +194,22 @@
   <script>
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
-    menuBtn.addEventListener('click', ()=>{
-      nav.style.display = (nav.style.display==='flex') ? 'none' : 'flex';
-      nav.style.flexDirection = 'column';
-      nav.style.background = '#fff';
-      nav.style.position = 'absolute';
-      nav.style.top = '60px';
-      nav.style.right = '6%';
-      nav.style.padding = '10px';
-      nav.style.border = '1px solid #ddd';
-      nav.style.borderRadius = '6px';
+	menuBtn.addEventListener('click', () => {
+	  const open = nav.style.display === 'flex';
+	  nav.style.display = open ? 'none' : 'flex';
+	  if (!open) {
+		nav.style.flexDirection = 'column';
+		nav.style.background = '#fff';
+		nav.style.position = 'absolute';
+		nav.style.top = '60px';
+		nav.style.right = '6%';
+		nav.style.padding = '10px';
+		nav.style.border = '1px solid #ddd';
+		nav.style.borderRadius = '6px';
+		nav.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+		nav.style.transition = 'all 0.3s ease';
+	  }
+	});
     });
   </script>
 </body>
