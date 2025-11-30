@@ -1,161 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology.">
-<meta name="theme-color" content="#3b82f6">
-<title>Ghannaway Tech Systems — Empowering Africa Through Technology</title>
-<link rel="icon" href="assets/img/logo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Home — Ghannaway Tech Systems</title>
+  <link rel="icon" href="assets/img/logo.png">
 
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
-  html{scroll-behavior:smooth;}
-  body{background:#f9fafb;color:#222;line-height:1.6;overflow-x:hidden;}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-  /* PRELOADER */
-  #preloader{
-    position:fixed;inset:0;
-    background:linear-gradient(135deg,#1e3a8a,#2563eb,#3b82f6);
-    display:flex;align-items:center;justify-content:center;
-    z-index:10000;transition:opacity 0.6s ease;
-  }
-  #preloader.hidden{opacity:0;pointer-events:none;}
-  .spinner{
-    width:70px;height:70px;
-    border:6px solid rgba(255,255,255,0.3);
-    border-top:6px solid #fff;border-radius:50%;
-    animation:spin 1s linear infinite;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}}
+  <style>
+    /* ===== RESET & BASICS ===== */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", sans-serif; }
+    html { scroll-behavior:smooth; }
+    body { background:#f9fafb; color:#1f2937; line-height:1.6; overflow-x:hidden; }
 
-/* HEADER */
-header{
-  position:fixed;top:0;left:0;right:0;
-  background:#fff; /* always white */
-  box-shadow:0 2px 4px rgba(0,0,0,0.1);
-  display:flex;justify-content:space-between;align-items:center;
-  padding:10px 6%;z-index:100;transition:box-shadow 0.3s;
-}
-/* remove scrolled color change */
-header.scrolled{
-  box-shadow:0 3px 8px rgba(0,0,0,0.15); /* just slightly stronger shadow */
-}
-header img{width:40px;height:40px;object-fit:contain;transition:transform 0.3s;}
-header img:hover{transform:rotate(10deg) scale(1.1);}
-header nav a{
-  color:#333;text-decoration:none;margin:0 10px;font-weight:500;
-  position:relative;transition:color 0.3s;
-}
-header nav a::after{
-  content:"";position:absolute;bottom:-3px;left:0;width:0;height:2px;
-  background:#2563eb;transition:width 0.3s;
-}
-header nav a:hover::after{width:100%;}
-header nav a:hover,.active{color:#2563eb;}
-#menu-btn{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;}
-@media(max-width:768px){
-  header nav{display:none;}
-  #menu-btn{display:block;color:#333;}
-}
+    /* ===== PRELOADER ===== */
+    #preloader {
+      position:fixed; inset:0;
+      background: #fff;
+      display:flex; align-items:center; justify-content:center;
+      z-index:10000; transition:opacity 0.6s ease;
+    }
+    .spinner {
+      width:60px; height:60px; border:6px solid #e5e7eb;
+      border-top-color:#2563eb; border-radius:50%;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
 
+    /* ===== HEADER (Consistent with About Page) ===== */
+    header {
+      position:fixed; top:0; left:0; right:0;
+      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 6%; z-index:1000;
+    }
+    .logo-container { display:flex; align-items:center; gap:10px; text-decoration: none; }
+    .logo-container img { width:40px; height:40px; object-fit:contain; }
+    .logo-text { font-weight:600; font-size:1.1rem; color:#2563eb; }
 
-  /* HERO */
-  .hero{
-    position:relative;background:linear-gradient(135deg,#2563eb,#3b82f6);
-    color:white;padding:140px 6% 100px;
-    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-    overflow:hidden;
-  }
-  .orb{
-    position:absolute;border-radius:50%;opacity:0.25;filter:blur(80px);
-    animation:float 8s ease-in-out infinite;z-index:0;
-  }
-  .orb:nth-child(1){top:-100px;left:-80px;width:300px;height:300px;background:#2563eb;animation-delay:0s;}
-  .orb:nth-child(2){top:200px;right:-120px;width:400px;height:400px;background:#3b82f6;animation-delay:2s;}
-  .orb:nth-child(3){bottom:-120px;left:150px;width:250px;height:250px;background:#1e3a8a;animation-delay:4s;}
-  @keyframes float{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-25px) scale(1.05);}}
+    header nav { display:flex; gap: 20px; }
+    header nav a {
+      color:#333; text-decoration:none; font-weight:500;
+      transition:color 0.3s; position: relative;
+    }
+    header nav a:hover, header nav a.active { color:#2563eb; }
+    header nav a.active::after {
+        content: ''; position: absolute; width: 100%; height: 2px;
+        bottom: -4px; left: 0; background: #2563eb;
+    }
 
-  .hero-text{flex:1 1 400px;max-width:500px;z-index:1;}
-  .hero h1{font-size:2.7rem;margin-bottom:15px;animation:fadeUp 1s ease 0.3s both;}
-  .hero p{font-size:1.1rem;margin-bottom:25px;animation:fadeUp 1s ease 0.5s both;}
-  .hero a{
-    display:inline-block;background:white;color:#2563eb;
-    padding:10px 20px;border-radius:6px;font-weight:600;text-decoration:none;margin-right:10px;
-    transition:transform 0.3s,box-shadow 0.3s,background 0.3s;
-  }
-  .hero a:hover{transform:translateY(-3px);box-shadow:0 4px 10px rgba(0,0,0,0.25);background:#f1f5ff;}
-  .hero a.secondary{background:transparent;color:white;border:2px solid white;}
-  .hero a.secondary:hover{background:white;color:#2563eb;}
-  .hero img{width:100%;max-width:500px;border-radius:12px;animation:zoomIn 1.2s ease;z-index:1;}
+    #menu-btn { display:none; background:none; border:none; font-size:1.8rem; cursor:pointer; color:#333; }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-  @keyframes zoomIn{from{opacity:0;transform:scale(0.9);}to{opacity:1;transform:scale(1);}}
+    /* Mobile Menu */
+    @media(max-width:768px){
+      #menu-btn { display:block; }
+      header nav {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #fff; border-top: 1px solid #eee;
+        flex-direction: column; padding: 20px; gap: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transform: translateY(-150%); opacity: 0; pointer-events: none;
+        transition: all 0.3s ease; z-index: 999;
+      }
+      header nav.nav-active { transform: translateY(0); opacity: 1; pointer-events: all; }
+    }
 
-  .animate{opacity:0;}
-  .animate.visible{animation:fadeUp 1s ease forwards;}
+    /* ===== HERO ===== */
+    .hero {
+      position:relative; background:linear-gradient(135deg,#2563eb,#1e40af);
+      color:white; padding:160px 6% 100px; /* Adjusted top padding for fixed header */
+      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      gap: 40px; overflow:hidden;
+    }
+    
+    /* Orb Animations */
+    .orb {
+      position:absolute; border-radius:50%; opacity:0.3; filter:blur(60px);
+      animation:float 8s ease-in-out infinite; z-index:0;
+    }
+    .orb:nth-child(1) { top:-50px; left:-50px; width:300px; height:300px; background:#60a5fa; }
+    .orb:nth-child(2) { bottom:-50px; right:-50px; width:400px; height:400px; background:#1d4ed8; animation-delay:2s; }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
 
-  /* SECTIONS */
-  .services,.products{padding:100px 6%;text-align:center;position:relative;z-index:1;}
-  .services h2,.products h2{color:#2563eb;font-size:2rem;margin-bottom:10px;}
-  .services p,.products p{color:#666;margin-bottom:40px;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-  .card{
-    background:white;padding:25px;border-radius:12px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.05);transition:transform 0.4s,box-shadow 0.4s;
-    opacity:0;transform:translateY(30px);
-  }
-  .card.visible{animation:zoomIn 0.8s ease forwards;}
-  .card:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 4px 12px rgba(0,0,0,0.1);}
-  .card img{width:100%;border-radius:10px;height:180px;object-fit:cover;margin-bottom:15px;}
-  .card h3{font-size:1.1rem;color:#111;margin-bottom:5px;}
-  .card p{font-size:0.9rem;color:#555;}
+    .hero-text { flex:1 1 400px; max-width:600px; z-index:1; }
+    .hero h1 { font-size:3rem; line-height: 1.2; margin-bottom:20px; animation:fadeUp 0.8s ease backwards; }
+    .hero p { font-size:1.1rem; margin-bottom:30px; opacity: 0.9; animation:fadeUp 0.8s ease 0.2s backwards; }
+    
+    .hero-btns { display: flex; gap: 15px; animation:fadeUp 0.8s ease 0.4s backwards; }
+    .hero a {
+      display:inline-block; background:white; color:#2563eb;
+      padding:12px 25px; border-radius:6px; font-weight:600; text-decoration:none;
+      transition:transform 0.3s, box-shadow 0.3s;
+    }
+    .hero a:hover { transform:translateY(-3px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+    .hero a.secondary { background:transparent; color:white; border:2px solid rgba(255,255,255,0.3); }
+    .hero a.secondary:hover { background:white; color:#2563eb; border-color:white; }
 
-  /* CTA */
-  .cta{
-    background:linear-gradient(90deg,#2563eb,#1e40af);
-    color:white;text-align:center;padding:80px 6%;
-    position:relative;overflow:hidden;
-  }
-  .cta::before{
-    content:"";position:absolute;inset:0;
-    background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.15),transparent 70%);
-    animation:pulse 6s infinite;
-  }
-  @keyframes pulse{0%,100%{opacity:0.4;transform:scale(1);}50%{opacity:1;transform:scale(1.1);}}
-  .cta h3{font-size:1.8rem;margin-bottom:15px;position:relative;z-index:1;}
-  .cta a{
-    display:inline-block;background:white;color:#2563eb;
-    padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:600;
-    transition:all 0.3s ease;position:relative;z-index:1;
-  }
-  .cta a:hover{transform:scale(1.05);}
+    .hero-img-container { flex:1 1 400px; z-index:1; display: flex; justify-content: center; }
+    .hero img { width:100%; max-width:500px; border-radius:12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); animation:zoomIn 1s ease; }
 
-  /* FOOTER */
-  footer{
-    background:#111827;color:#ccc;padding:60px 6% 20px;position:relative;z-index:1;
-  }
-  footer .footer-grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-bottom:20px;
-  }
-  footer h4,footer h5{color:#fff;margin-bottom:10px;}
-  footer a{color:#60a5fa;text-decoration:none;transition:color 0.3s;}
-  footer a:hover{color:#93c5fd;}
-  footer .bottom{text-align:center;border-top:1px solid #333;padding-top:15px;font-size:0.85rem;}
-</style>
+    /* ===== SECTIONS COMMON ===== */
+    .section-pad { padding: 100px 6%; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-header h2 { color:#2563eb; font-size:2rem; margin-bottom:10px; }
+    .section-header p { color:#6b7280; max-width: 600px; margin: 0 auto; }
+
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
+    
+    /* Services Cards */
+    .card {
+      background:white; padding:30px; border-radius:12px; border: 1px solid #f3f4f6;
+      box-shadow:0 4px 6px rgba(0,0,0,0.05); transition:transform 0.3s, box-shadow 0.3s;
+      opacity:0; transform:translateY(30px); /* Hidden for scroll reveal */
+    }
+    .card:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.1); border-color: #bfdbfe; }
+    .card i { font-size: 2.5rem; color: #2563eb; margin-bottom: 20px; }
+    .card h3 { font-size:1.25rem; color:#111; margin-bottom:10px; }
+    .card p { font-size:0.95rem; color:#555; }
+
+    /* Product Cards */
+    .product-card {
+        background: white; border-radius: 12px; overflow: hidden;
+        box-shadow:0 4px 6px rgba(0,0,0,0.05); transition:transform 0.3s;
+        opacity:0; transform:translateY(30px);
+    }
+    .product-card:hover { transform:translateY(-5px); }
+    .product-card img { width: 100%; height: 200px; object-fit: cover; background: #eee; }
+    .product-info { padding: 25px; }
+    .product-info h3 { font-size:1.2rem; margin-bottom: 8px; }
+
+    /* ===== CTA ===== */
+    .cta {
+      background:linear-gradient(90deg,#1e40af,#2563eb);
+      color:white; text-align:center; padding:80px 6%;
+      position:relative; overflow:hidden;
+    }
+    .cta h3 { font-size:2rem; margin-bottom:15px; position:relative; z-index:1; }
+    .cta p { margin-bottom: 30px; position:relative; z-index:1; }
+    .cta-btn {
+      background:white; color:#2563eb; padding:12px 30px; border-radius:30px;
+      font-weight:bold; text-decoration:none; display: inline-block;
+      transition: transform 0.3s; position:relative; z-index:1;
+    }
+    .cta-btn:hover { transform: scale(1.05); }
+
+    /* ===== FOOTER ===== */
+    footer { background:#111827; color:#9ca3af; padding:60px 6% 20px; }
+    footer .footer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:40px; margin-bottom:40px; }
+    footer h4, footer h5 { color:#fff; margin-bottom:15px; font-size: 1.1rem; }
+    footer a { color:#60a5fa; text-decoration:none; transition:color 0.3s; }
+    footer a:hover { color:#93c5fd; text-decoration: underline; }
+    footer .bottom { text-align:center; border-top:1px solid #374151; padding-top:20px; font-size:0.85rem; color: #6b7280; }
+
+    /* Animations Classes */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes zoomIn { from{opacity:0;transform:scale(0.9);} to{opacity:1;transform:scale(1);} }
+    .visible { opacity:1 !important; transform:translateY(0) !important; transition: all 0.6s ease; }
+  </style>
 </head>
 <body>
 
-<!-- PRELOADER -->
 <div id="preloader"><div class="spinner"></div></div>
 
-<!-- HEADER -->
-<header id="header">
-  <div style="display:flex;align-items:center;gap:10px;">
+<header>
+  <a href="index.html" class="logo-container">
     <img src="assets/img/logo.png" alt="GTS Logo">
-    <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
-  </div>
+    <span class="logo-text">Ghannaway Tech Systems</span>
+  </a>
   <nav id="nav">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
@@ -165,123 +179,167 @@ header nav a:hover,.active{color:#2563eb;}
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
   </nav>
-  <button id="menu-btn">☰</button>
+  <button id="menu-btn"><i class="fas fa-bars"></i></button>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="orb"></div>
   <div class="orb"></div>
-  <div class="orb"></div>
+  
   <div class="hero-text">
-    <h1>Empowering Africa Through Technology</h1>
-    <p>Ghannaway Tech Systems builds software, deploys networks, and provides hosting & IT services to businesses, institutions, and entrepreneurs across the continent.</p>
-    <a href="services.html">Our Services</a>
-    <a href="contact.html" class="secondary">Contact Sales</a>
+    <h1>Empowering Africa <br>Through Technology</h1>
+    <p>Ghannaway Tech Systems builds software, deploys networks, and provides hosting & IT services to businesses, institutions, and entrepreneurs.</p>
+    <div class="hero-btns">
+        <a href="services.html">Our Services</a>
+        <a href="contact.html" class="secondary">Contact Sales</a>
+    </div>
   </div>
-  <img src="assets/img/hero.png" alt="GTS Hero">
+  
+  <div class="hero-img-container">
+      <img src="assets/img/hero.png" alt="GTS Dashboard and Tech">
+  </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services">
-  <h2 class="animate">Our Core Services</h2>
-  <p class="animate">We provide end-to-end IT services — from design and deployment to maintenance and cloud hosting.</p>
+<section class="services section-pad">
+  <div class="section-header scroll-reveal">
+      <h2>Our Core Services</h2>
+      <p>We provide end-to-end IT services — from design and deployment to maintenance and cloud hosting.</p>
+  </div>
+
   <div class="grid">
-    <div class="card"><h3>IT Infrastructure & Networking</h3><p>Design, install and maintain networks, servers, CCTV, and on-premise systems.</p></div>
-    <div class="card"><h3>Software & Mobile Apps</h3><p>Custom web and mobile applications, integrations, and automation for business workflows.</p></div>
-    <div class="card"><h3>Cloud, Hosting & DevOps</h3><p>Cloud migrations, VPS, managed hosting and CI/CD to make systems scalable and secure.</p></div>
+    <div class="card scroll-reveal">
+        <i class="fas fa-network-wired"></i>
+        <h3>Infrastructure & Networking</h3>
+        <p>Design, install and maintain enterprise networks, servers, CCTV systems, and secure on-premise hardware.</p>
+    </div>
+    <div class="card scroll-reveal">
+        <i class="fas fa-code"></i>
+        <h3>Software & Mobile Apps</h3>
+        <p>Custom web and mobile applications, API integrations, and automation tools tailored to your business workflows.</p>
+    </div>
+    <div class="card scroll-reveal">
+        <i class="fas fa-cloud"></i>
+        <h3>Cloud & DevOps</h3>
+        <p>Cloud migrations, VPS management, secure hosting, and CI/CD pipelines to ensure your systems are scalable.</p>
+    </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section class="products">
-  <h2 class="animate">Products by GTS</h2>
-  <p class="animate">Ready-made & custom products created to solve practical business problems.</p>
+<section class="products section-pad" style="background: #fff;">
+  <div class="section-header scroll-reveal">
+      <h2>Products by GTS</h2>
+      <p>Ready-made & custom products created to solve practical business problems.</p>
+  </div>
+  
   <div class="grid">
-    <div class="card"><img src="assets/img/products/app1.png" alt="GTS Noter"><h3>GTS Noter</h3><p>A simple, powerful notes & tasks system for teams and individuals.</p></div>
-    <div class="card"><img src="assets/img/products/app2.png" alt="GTS CloudDesk"><h3>GTS CloudDesk</h3><p>Cloud workspace for teams — file sharing, collaboration and backups.</p></div>
-    <div class="card"><img src="assets/img/products/app3.png" alt="GTS POS"><h3>GTS POS</h3><p>Point-of-sale & inventory system for retail and boutiques.</p></div>
+    <div class="product-card scroll-reveal">
+        <img src="assets/img/products/app1.png" alt="GTS Noter Interface">
+        <div class="product-info">
+            <h3>GTS Noter</h3>
+            <p>A simple, powerful notes & tasks system for teams to stay organized.</p>
+        </div>
+    </div>
+    <div class="product-card scroll-reveal">
+        <img src="assets/img/products/app2.png" alt="GTS CloudDesk Interface">
+        <div class="product-info">
+            <h3>GTS CloudDesk</h3>
+            <p>Secure cloud workspace for teams — file sharing, collaboration and backups.</p>
+        </div>
+    </div>
+    <div class="product-card scroll-reveal">
+        <img src="assets/img/products/app3.png" alt="GTS POS Interface">
+        <div class="product-info">
+            <h3>GTS POS</h3>
+            <p>Point-of-sale & inventory system designed for African retail and boutiques.</p>
+        </div>
+    </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta">
   <h3>Ready to transform your business?</h3>
   <p>Schedule a consultation and let GTS design a tailored solution for you.</p>
-  <a href="contact.html">Contact Us</a>
+  <a href="contact.html" class="cta-btn">Contact Us</a>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
-      <img src="assets/img/logo.png" alt="GTS Logo" style="width:45px;height:45px;margin-bottom:8px;">
-      <h4>Ghannaway Tech Systems</h4>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
+          <img src="assets/img/logo.png" alt="GTS Logo" style="width:40px;height:40px;">
+          <span style="color:white; font-weight:bold;">Ghannaway Tech</span>
+      </div>
       <p>Empowering Africa Through Technology — software, hardware, hosting and support.</p>
     </div>
     <div>
       <h5>Quick Links</h5>
-      <a href="about.html">About</a><br>
-      <a href="services.html">Services</a><br>
-      <a href="products.html">Products</a><br>
-      <a href="blog.html">Blog</a>
+      <ul style="list-style:none;">
+          <li style="margin-bottom:8px;"><a href="about.html">About Us</a></li>
+          <li style="margin-bottom:8px;"><a href="services.html">Our Services</a></li>
+          <li style="margin-bottom:8px;"><a href="products.html">Products</a></li>
+          <li style="margin-bottom:8px;"><a href="blog.html">Latest News</a></li>
+      </ul>
     </div>
     <div>
-      <h5>Contact</h5>
-      <p>Email: <a href="mailto:info@ghannawaytech.co.ke">info@ghannawaytech.co.ke</a></p>
-      <p>Phone: +254 757 041 431</p>
+      <h5>Contact Us</h5>
+      <p style="margin-bottom:10px;">Email: <a href="mailto:ghannawaytechsystems@gmail.com">ghannawaytechsystems@gmail.com</a></p>
+      <p style="margin-bottom:10px;">Phone: +254 757 041 431</p>
       <p>Nairobi, Kenya</p>
+      
+      <div style="margin-top:15px; font-size:1.2rem; display:flex; gap:15px;">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
     </div>
   </div>
-  <div class="bottom">© 2025 Ghannaway Tech Systems. All rights reserved.</div>
+  <div class="bottom">
+      &copy; 2025 Ghannaway Tech Systems. All rights reserved.
+  </div>
 </footer>
 
 <script>
   // PRELOADER
-  window.addEventListener('load',()=>document.getElementById('preloader').classList.add('hidden'));
-
-  const menuBtn=document.getElementById('menu-btn');
-  const nav=document.getElementById('nav');
-  const header=document.getElementById('header');
-  const cards=document.querySelectorAll('.card');
-  const animElems=document.querySelectorAll('.animate');
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    setTimeout(() => { preloader.style.display = 'none'; }, 600);
+    revealOnScroll(); // Trigger reveal for elements already in view
+  });
 
   // MOBILE MENU
-  menuBtn.addEventListener('click',()=>{
-    const open=nav.style.display==='flex';
-    nav.style.display=open?'none':'flex';
-    if(!open){
-      Object.assign(nav.style,{
-        flexDirection:'column',
-        background:header.classList.contains('scrolled')?'#2563eb':'#fff',
-        position:'absolute',top:'60px',right:'6%',
-        padding:'10px',border:header.classList.contains('scrolled')?'none':'1px solid #ddd',
-        borderRadius:'6px',boxShadow:'0 4px 8px rgba(0,0,0,0.1)',
-        transition:'all 0.3s ease'
-      });
+  const menuBtn = document.getElementById('menu-btn');
+  const nav = document.getElementById('nav');
+  const icon = menuBtn.querySelector('i');
+
+  menuBtn.addEventListener('click', () => {
+    nav.classList.toggle('nav-active');
+    // Icon toggle
+    if(nav.classList.contains('nav-active')){
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
     }
   });
 
-  // SCROLL REVEAL
-  function revealOnScroll(){
-    const triggerBottom=window.innerHeight*0.85;
-    [...cards,...animElems].forEach(el=>{
-      const top=el.getBoundingClientRect().top;
-      if(top<triggerBottom) el.classList.add('visible');
+  // SCROLL REVEAL ANIMATION
+  const revealElements = document.querySelectorAll('.scroll-reveal, .card, .product-card');
+
+  function revealOnScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+    
+    revealElements.forEach(el => {
+      const boxTop = el.getBoundingClientRect().top;
+      if (boxTop < triggerBottom) {
+        el.classList.add('visible');
+      }
     });
   }
-  window.addEventListener('scroll',revealOnScroll);
-  revealOnScroll();
-// HEADER SCROLL EFFECT — remove color toggle
-window.addEventListener('scroll', () => {
-  if(window.scrollY > 50){
-    header.classList.add('scrolled'); // only adds shadow
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
+
+  window.addEventListener('scroll', revealOnScroll);
 </script>
 </body>
 </html>
-
-
