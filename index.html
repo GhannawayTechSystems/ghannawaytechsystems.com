@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology.">
+  <meta name="description" content="Ghannaway Tech Systems (GTS) provides custom software development, IT consulting, network infrastructure, and cloud hosting services for businesses and institutions across Africa.">
   <meta name="theme-color" content="#2563eb">
-  <title>Home — Ghannaway Tech Systems</title>
+  <title>Ghannaway Tech Systems (GTS) | IT Consulting & Software Development in Africa</title>
   <link rel="icon" href="assets/img/logo.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -50,6 +50,12 @@
     header nav a.active::after {
         content: ''; position: absolute; width: 100%; height: 2px;
         bottom: -4px; left: 0; background: #2563eb;
+    }
+    
+    /* Accessibility Focus State */
+    header nav a:focus-visible, .hero a:focus-visible, .cta-btn:focus-visible, footer a:focus-visible, #menu-btn:focus-visible {
+      outline: 2px dashed #2563eb;
+      outline-offset: 3px;
     }
 
     #menu-btn { display:none; background:none; border:none; font-size:1.8rem; cursor:pointer; color:#333; }
@@ -153,6 +159,21 @@
     footer h4, footer h5 { color:#fff; margin-bottom:15px; font-size: 1.1rem; }
     footer a { color:#60a5fa; text-decoration:none; transition:color 0.3s; }
     footer a:hover { color:#93c5fd; text-decoration: underline; }
+    
+    /* REFACTORED FOOTER STYLES */
+    .footer-logo-container { /* Replaces inline style on logo div */
+      display:flex; align-items:center; gap:10px; margin-bottom:15px;
+    }
+    .footer-logo-container img {
+      width:40px; height:40px; object-fit:contain;
+    }
+    .footer-links-list { /* Replaces inline styles on ul/li */
+        list-style:none; padding-left: 0;
+    }
+    .footer-links-list li {
+        margin-bottom:8px;
+    }
+
     footer .bottom { text-align:center; border-top:1px solid #374151; padding-top:20px; font-size:0.85rem; color: #6b7280; }
 
     /* Animations Classes */
@@ -160,6 +181,24 @@
     @keyframes zoomIn { from{opacity:0;transform:scale(0.9);} to{opacity:1;transform:scale(1);} }
     .visible { opacity:1 !important; transform:translateY(0) !important; transition: all 0.6s ease; }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ghannaway Tech Systems",
+    "url": "https://www.yourdomain.com/index.html",
+    "logo": "https://www.yourdomain.com/assets/img/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+254-757-041-431",
+      "contactType": "Sales"
+    },
+    "sameAs": [
+      "#"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -167,8 +206,7 @@
 
 <header>
   <a href="index.html" class="logo-container">
-    <img src="assets/img/logo.png" alt="GTS Logo">
-    <span class="logo-text">Ghannaway Tech Systems</span>
+    <img src="assets/img/logo.png" alt="Ghannaway Tech Systems Logo"> <span class="logo-text">Ghannaway Tech Systems</span>
   </a>
   <nav id="nav">
     <a href="index.html" class="active">Home</a>
@@ -179,8 +217,7 @@
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
   </nav>
-  <button id="menu-btn"><i class="fas fa-bars"></i></button>
-</header>
+  <button id="menu-btn" aria-expanded="false" aria-controls="nav"><i class="fas fa-bars"></i></button> </header>
 
 <section class="hero">
   <div class="orb"></div>
@@ -188,7 +225,7 @@
   
   <div class="hero-text">
     <h1>Empowering Africa <br>Through Technology</h1>
-    <p>Ghannaway Tech Systems builds software, deploys networks, and provides hosting & IT services to businesses, institutions, and entrepreneurs.</p>
+    <p>Ghannaway Tech Systems builds **custom software**, deploys **robust network infrastructure**, and provides **secure cloud hosting & IT services** to businesses, institutions, and entrepreneurs.</p>
     <div class="hero-btns">
         <a href="services.html">Our Services</a>
         <a href="contact.html" class="secondary">Contact Sales</a>
@@ -196,7 +233,7 @@
   </div>
   
   <div class="hero-img-container">
-      <img src="assets/img/hero.png" alt="GTS Dashboard and Tech">
+      <img src="assets/img/hero.png" alt="GTS dashboard interface and technology hardware concept">
   </div>
 </section>
 
@@ -233,21 +270,21 @@
   
   <div class="grid">
     <div class="product-card scroll-reveal">
-        <img src="assets/img/products/app1.png" alt="GTS Noter Interface">
+        <img src="assets/img/products/app1.png" alt="GTS Noter, a simple notes and tasks system interface.">
         <div class="product-info">
             <h3>GTS Noter</h3>
             <p>A simple, powerful notes & tasks system for teams to stay organized.</p>
         </div>
     </div>
     <div class="product-card scroll-reveal">
-        <img src="assets/img/products/app2.png" alt="GTS CloudDesk Interface">
+        <img src="assets/img/products/app2.png" alt="GTS CloudDesk secure cloud workspace interface for file sharing.">
         <div class="product-info">
             <h3>GTS CloudDesk</h3>
             <p>Secure cloud workspace for teams — file sharing, collaboration and backups.</p>
         </div>
     </div>
     <div class="product-card scroll-reveal">
-        <img src="assets/img/products/app3.png" alt="GTS POS Interface">
+        <img src="assets/img/products/app3.png" alt="GTS POS Point-of-Sale and Inventory Management system interface.">
         <div class="product-info">
             <h3>GTS POS</h3>
             <p>Point-of-sale & inventory system designed for African retail and boutiques.</p>
@@ -265,19 +302,19 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
-          <img src="assets/img/logo.png" alt="GTS Logo" style="width:40px;height:40px;">
+      <div class="footer-logo-container">
+          <img src="assets/img/logo.png" alt="GTS Logo">
           <span style="color:white; font-weight:bold;">Ghannaway Tech</span>
       </div>
       <p>Empowering Africa Through Technology — software, hardware, hosting and support.</p>
     </div>
     <div>
       <h5>Quick Links</h5>
-      <ul style="list-style:none;">
-          <li style="margin-bottom:8px;"><a href="about.html">About Us</a></li>
-          <li style="margin-bottom:8px;"><a href="services.html">Our Services</a></li>
-          <li style="margin-bottom:8px;"><a href="products.html">Products</a></li>
-          <li style="margin-bottom:8px;"><a href="blog.html">Latest News</a></li>
+      <ul class="footer-links-list">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Our Services</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="blog.html">Latest News</a></li>
       </ul>
     </div>
     <div>
@@ -314,24 +351,29 @@
   const icon = menuBtn.querySelector('i');
 
   menuBtn.addEventListener('click', () => {
-    nav.classList.toggle('nav-active');
+    const isExpanded = nav.classList.toggle('nav-active');
+    // Toggle ARIA attributes
+    menuBtn.setAttribute('aria-expanded', isExpanded);
     // Icon toggle
-    if(nav.classList.contains('nav-active')){
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
+    if(isExpanded){
+      icon.classList.remove('fa-bars');
+      icon.classList.add('fa-times');
     } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
     }
   });
 
-  // SCROLL REVEAL ANIMATION
+  // SCROLL REVEAL ANIMATION (Slightly optimized to skip visible elements)
   const revealElements = document.querySelectorAll('.scroll-reveal, .card, .product-card');
 
   function revealOnScroll() {
     const triggerBottom = window.innerHeight * 0.85;
     
     revealElements.forEach(el => {
+      // Optimization: Skip if element is already visible
+      if (el.classList.contains('visible')) return; 
+
       const boxTop = el.getBoundingClientRect().top;
       if (boxTop < triggerBottom) {
         el.classList.add('visible');
