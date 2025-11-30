@@ -1,274 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="About — Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology." />
-  <meta name="theme-color" content="#3b82f6" />
-  <title>About — Ghannaway Tech Systems</title>
-  <link rel="icon" href="assets/img/logo.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+    <meta name="description" content="Learn about Ghannaway Tech Systems (GTS), our mission to empower Africa through technology, and our expertise in software development, cloud infrastructure, and IT solutions." />
+  <meta name="theme-color" content="#3b82f6" />
+  <title>Our Story & Mission | About Ghannaway Tech Systems (GTS)</title>
+  <link rel="icon" href="assets/img/logo.png" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-  <style>
-    /* ===== RESET & BASICS ===== */
-    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", sans-serif; }
-    html { scroll-behavior: smooth; }
-    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
-
-    /* ===== LOADER ===== */
-    #loader {
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      background:white; display:flex; align-items:center; justify-content:center;
-      z-index:2000; transition:opacity 0.6s ease;
-    }
-    .spinner {
-      width:60px; height:60px; border:6px solid #e5e7eb;
-      border-top-color:#2563eb; border-radius:50%; animation:spin 1s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
-
-    /* ===== HEADER ===== */
-    header {
-      position:fixed; top:0; left:0; right:0;
-      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
-      display:flex; justify-content:space-between; align-items:center;
-      padding:10px 6%; z-index:1000;
-      animation:fadeDown 0.8s ease-in-out;
-    }
-    .logo-container { display:flex; align-items:center; gap:10px; text-decoration: none; }
-    .logo-container img { width:40px; height:40px; object-fit:contain; }
-    .logo-text { font-weight:600; font-size:1.1rem; color:#2563eb; }
-
-    header nav { display:flex; gap: 20px; }
-    header nav a {
-      color:#333; text-decoration:none; font-weight:500;
-      transition:color 0.3s; position: relative;
-    }
-    header nav a:hover, header nav a.active { color:#2563eb; }
+  <style>
+    /* ===== RESET & BASICS ===== */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
     
-    /* Underline effect for active link */
-    header nav a.active::after {
-        content: ''; position: absolute; width: 100%; height: 2px;
-        bottom: -4px; left: 0; background: #2563eb;
+    /* Accessibility Focus State - Added for better keyboard navigation */
+    a:focus-visible, button:focus-visible {
+        outline: 2px dashed #2563eb;
+        outline-offset: 3px;
     }
 
-    #menu-btn { display:none; background:none; border:none; font-size:1.8rem; cursor:pointer; color:#333; }
+    /* ===== LOADER ===== */
+    #loader {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:white; display:flex; align-items:center; justify-content:center;
+      z-index:2000; transition:opacity 0.6s ease;
+    }
+    .spinner {
+      width:60px; height:60px; border:6px solid #e5e7eb;
+      border-top-color:#2563eb; border-radius:50%; animation:spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
 
-    /* ===== MOBILE NAV STYLES ===== */
-    @media(max-width:768px){
-      #menu-btn { display:block; }
-      header nav {
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: #fff; border-top: 1px solid #eee;
-        flex-direction: column; padding: 20px; gap: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transform: translateY(-150%); /* Hidden by default */
-        opacity: 0; pointer-events: none;
-        transition: all 0.3s ease; z-index: 999;
-      }
-      /* Class to toggle via JS */
-      header nav.nav-active {
-        transform: translateY(0);
-        opacity: 1; pointer-events: all;
-      }
+    /* ===== HEADER ===== */
+    header {
+      position:fixed; top:0; left:0; right:0;
+      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 6%; z-index:1000;
+      animation:fadeDown 0.8s ease-in-out;
+    }
+    .logo-container { display:flex; align-items:center; gap:10px; text-decoration: none; }
+    .logo-container img { width:40px; height:40px; object-fit:contain; }
+    .logo-text { font-weight:600; font-size:1.1rem; color:#2563eb; }
+
+    header nav { display:flex; gap: 20px; }
+    header nav a {
+      color:#333; text-decoration:none; font-weight:500;
+      transition:color 0.3s; position: relative;
+    }
+    header nav a:hover, header nav a.active { color:#2563eb; }
+    
+    /* Underline effect for active link */
+    header nav a.active::after {
+        content: ''; position: absolute; width: 100%; height: 2px;
+        bottom: -4px; left: 0; background: #2563eb;
+    }
+
+    #menu-btn { display:none; background:none; border:none; font-size:1.8rem; cursor:pointer; color:#333; }
+
+    /* ===== MOBILE NAV STYLES ===== */
+    @media(max-width:768px){
+      #menu-btn { display:block; }
+      header nav {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #fff; border-top: 1px solid #eee;
+        flex-direction: column; padding: 20px; gap: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transform: translateY(-150%); /* Hidden by default */
+        opacity: 0; pointer-events: none;
+        transition: all 0.3s ease; z-index: 999;
+      }
+      /* Class to toggle via JS */
+      header nav.nav-active {
+        transform: translateY(0);
+        opacity: 1; pointer-events: all;
+      }
+    }
+
+    /* ===== HERO (Page Header) ===== */
+    .hero {
+      background:linear-gradient(135deg,#2563eb,#3b82f6);
+      color:white; text-align:center; padding:140px 6% 80px; /* Increased top padding for fixed header */
+      position:relative; overflow:hidden;
+    }
+    .hero::after {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(circle at 20% 40%, rgba(255,255,255,0.15), transparent 70%);
+      animation:moveBg 6s infinite alternate ease-in-out;
+    }
+    @keyframes moveBg { 0% { background-position:0 0; } 100% { background-position:100px 100px; } }
+    .hero h1 { font-size:2.5rem; margin-bottom:15px; position:relative; z-index:1; }
+    .hero p { font-size:1.1rem; position:relative; z-index:1; max-width:700px; margin:0 auto; opacity: 0.9; }
+
+    /* ===== CONTENT ===== */
+    .content {
+      padding:80px 6%;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:50px; align-items:center;
+    }
+    /* Animation setup for Intersection Observer */
+    .content img, .content-text h2, .content-text p {
+      opacity:0; transform:translateY(30px); transition:all 0.6s ease;
+    }
+    .content img {
+      width:100%; border-radius:12px; object-fit:cover;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .content-text h2 { color: #111827; margin-bottom: 1rem; font-size: 2rem; }
+    .content-text p { margin-bottom: 1rem; color: #4b5563; }
+
+    /* ===== MISSION (Section after main content) ===== */
+    .mission {
+      background:#eef2ff; text-align:center;
+      padding:80px 6%; 
+      /* Animation setup for Intersection Observer */
+      opacity:0; transform:translateY(30px);
+      transition:all 0.6s ease;
+    }
+    .mission h2 { color:#2563eb; font-size:1.8rem; margin-bottom:15px; margin-top: 30px; }
+    .mission h2:first-child { margin-top: 0; }
+    .mission p { color:#4b5563; max-width:800px; margin:0 auto; font-size: 1.05rem; }
+
+    /* ===== FOOTER (Standardized CSS) ===== */
+    footer {
+      background:#111827; color:#9ca3af; padding:60px 6% 20px;
+    }
+    footer .footer-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:40px; margin-bottom:40px;
+    }
+    footer h4, footer h5 { color:#fff; margin-bottom:15px; font-size: 1.1rem; }
+    footer a { color:#60a5fa; text-decoration:none; transition:color 0.3s; }
+    footer a:hover { color:#93c5fd; text-decoration: underline; }
+    
+    /* REFACTORED FOOTER STYLES */
+    .footer-logo-container {
+        display:flex; align-items:center; gap:10px; margin-bottom:15px;
+    }
+    .footer-logo-container img {
+        width:40px; height:40px; object-fit:contain;
+    }
+    .footer-links-list { 
+        list-style:none; padding-left: 0; /* Ensures list uses no bullet points */
+    }
+    .footer-links-list li {
+        margin-bottom:8px;
     }
 
-    /* ===== HERO ===== */
-    .hero {
-      background:linear-gradient(135deg,#2563eb,#3b82f6);
-      color:white; text-align:center; padding:140px 6% 80px; /* Increased top padding for fixed header */
-      position:relative; overflow:hidden;
-    }
-    .hero::after {
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(circle at 20% 40%, rgba(255,255,255,0.15), transparent 70%);
-      animation:moveBg 6s infinite alternate ease-in-out;
-    }
-    @keyframes moveBg { 0% { background-position:0 0; } 100% { background-position:100px 100px; } }
-    .hero h1 { font-size:2.5rem; margin-bottom:15px; position:relative; z-index:1; }
-    .hero p { font-size:1.1rem; position:relative; z-index:1; max-width:700px; margin:0 auto; opacity: 0.9; }
-
-    /* ===== CONTENT ===== */
-    .content {
-      padding:80px 6%;
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:50px; align-items:center;
-    }
-    .content img {
-      width:100%; border-radius:12px; object-fit:cover;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      opacity:0; transform:translateY(30px); transition:all 0.6s ease;
-    }
-    .content-text h2, .content-text p {
-      opacity:0; transform:translateY(30px); transition:all 0.6s ease;
-    }
-    .content-text h2 { color: #111827; margin-bottom: 1rem; font-size: 2rem; }
-    .content-text p { margin-bottom: 1rem; color: #4b5563; }
-
-    /* ===== MISSION ===== */
-    .mission {
-      background:#eef2ff; text-align:center;
-      padding:80px 6%; opacity:0; transform:translateY(30px);
-      transition:all 0.6s ease;
-    }
-    .mission h2 { color:#2563eb; font-size:1.8rem; margin-bottom:15px; margin-top: 30px; }
-    .mission h2:first-child { margin-top: 0; }
-    .mission p { color:#4b5563; max-width:800px; margin:0 auto; font-size: 1.05rem; }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background:#111827; color:#9ca3af; padding:60px 6% 20px;
-    }
-    footer .footer-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:40px; margin-bottom:40px;
-    }
-    footer h4, footer h5 { color:#fff; margin-bottom:15px; font-size: 1.1rem; }
-    footer a { color:#60a5fa; text-decoration:none; transition:color 0.3s; }
-    footer a:hover { color:#93c5fd; text-decoration: underline; }
-    footer .bottom {
-      text-align:center; border-top:1px solid #374151;
-      padding-top:20px; font-size:0.85rem; color: #6b7280;
+    footer .bottom {
+      text-align:center; border-top:1px solid #374151;
+      padding-top:20px; font-size:0.85rem; color: #6b7280;
+    }
+    
+    /* Accessibility addition for reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        *, ::before, ::after {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+        }
+        .hero::after {
+            animation: none !important; /* Stop the background animation */
+        }
     }
 
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
-    .visible { opacity:1 !important; transform:translateY(0) !important; }
-  </style>
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    .visible { opacity:1 !important; transform:translateY(0) !important; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ghannaway Tech Systems",
+    "url": "https://www.yourdomain.com/about.html",
+    "logo": "https://www.yourdomain.com/assets/img/logo.png",
+    "description": "Forward-thinking technology company dedicated to empowering Africa through software development, cloud infrastructure, and sustainable IT solutions.",
+    "founder": "Elvis Ndombi",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+254-757-041-431",
+      "contactType": "Sales"
+    },
+    "sameAs": [
+      "#"
+    ]
+  }
+  </script>
 </head>
 <body>
 
-  <div id="loader"><div class="spinner"></div></div>
+  <div id="loader"><div class="spinner"></div></div>
 
-  <header>
-    <a href="index.html" class="logo-container">
-      <img src="assets/img/logo.png" alt="GTS Logo">
-      <span class="logo-text">Ghannaway Tech Systems</span>
-    </a>
-    <nav id="nav">
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-      <a href="services.html">Services</a>
-      <a href="products.html">Products</a>
-      <a href="team.html">Team</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <button id="menu-btn" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
-  </header>
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="assets/img/logo.png" alt="Ghannaway Tech Systems Logo">
+      <span class="logo-text">Ghannaway Tech Systems</span>
+    </a>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="services.html">Services</a>
+      <a href="products.html">Products</a>
+      <a href="team.html">Team</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+        <button id="menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="nav"><i class="fas fa-bars"></i></button>
+  </header>
 
-  <section class="hero">
-    <h1>About Ghannaway Tech Systems</h1>
-    <p>We are a forward-thinking technology company dedicated to empowering Africa through innovation, digital transformation, and sustainable IT solutions.</p>
-  </section>
+  <section class="hero">
+    <h1>Our Story: Empowering Africa Through Technology</h1>
+    <p>We are a forward-thinking technology company dedicated to empowering Africa through innovation, digital transformation, and sustainable IT solutions.</p>
+  </section>
 
-  <section class="content">
-    <div class="content-text">
-      <h2>Who We Are</h2>
-      <p>Founded by visionary technologist <strong>Elvis Ndombi</strong>, Ghannaway Tech Systems (GTS) delivers smart, scalable technology solutions for businesses, institutions, and individuals. Our expertise spans software development, cloud infrastructure, networking, and automation.</p>
-      <p>At GTS, we believe that technology should simplify life and drive growth. We build tools, platforms, and systems that enable people to work smarter, connect seamlessly, and achieve more.</p>
-    </div>
-    <div>
-      <img src="assets/img/about.png" alt="About GTS Team">
-    </div>
-  </section>
+  <section class="content">
+    <div class="content-text">
+      <h2>Who We Are</h2>
+            <p>Founded by visionary technologist <strong>Elvis Ndombi</strong>, Ghannaway Tech Systems (GTS) delivers smart, scalable technology solutions for businesses, institutions, and individuals across the continent. Our core expertise spans **custom software development**, **cloud infrastructure**, **networking**, and **automation**.</p>
+      <p>At GTS, we believe that technology should simplify life and drive growth. We build tools, platforms, and systems that enable people to work smarter, connect seamlessly, and achieve more, fostering a new era of digital transformation in East Africa and beyond.</p>
+    </div>
+    <div>
+      <img src="assets/img/about.png" alt="GTS team collaborating on a dashboard interface in a modern office.">
+    </div>
+  </section>
 
-  <section class="mission">
-    <h2>Our Mission</h2>
-    <p>To empower individuals and organizations across Africa through reliable, affordable, and innovative technology solutions.</p>
-    
-    <h2>Our Vision</h2>
-    <p>To be the leading provider of digital transformation and IT infrastructure in Africa, inspiring the next generation of creators and innovators.</p>
-    
-    <h2>Our Values</h2>
-    <p>Integrity, innovation, inclusivity, and impact — we work to build trust, foster creativity, and ensure technology benefits everyone.</p>
-  </section>
+  <section class="mission">
+    <h2>Our Mission</h2>
+    <p>To empower individuals and organizations across Africa through reliable, affordable, and innovative technology solutions.</p>
+    
+    <h2>Our Vision</h2>
+    <p>To be the leading provider of digital transformation and IT infrastructure in Africa, inspiring the next generation of creators and innovators.</p>
+    
+    <h2>Our Values</h2>
+    <p>Integrity, innovation, inclusivity, and impact — we work to build trust, foster creativity, and ensure technology benefits everyone.</p>
+  </section>
 
-  <footer>
-    <div class="footer-grid">
-      <div>
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
-            <img src="assets/img/logo.png" alt="GTS Logo" style="width:40px;height:40px;">
-            <span style="color:white; font-weight:bold;">Ghannaway Tech</span>
-        </div>
-        <p>Empowering Africa Through Technology — software, hardware, hosting and support.</p>
-      </div>
-      <div>
-        <h5>Quick Links</h5>
-        <ul style="list-style:none;">
-            <li style="margin-bottom:8px;"><a href="about.html">About Us</a></li>
-            <li style="margin-bottom:8px;"><a href="services.html">Our Services</a></li>
-            <li style="margin-bottom:8px;"><a href="products.html">Products</a></li>
-            <li style="margin-bottom:8px;"><a href="blog.html">Latest News</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Contact Us</h5>
-        <p style="margin-bottom:10px;">Email: <a href="mailto:ghannawaytechsystems@gmail.com">ghannawaytechsystems@gmail.com</a></p>
-        <p style="margin-bottom:10px;">Phone: +254 757 041 431</p>
-        <p>Nairobi, Kenya</p>
-        
-        <div style="margin-top:15px; font-size:1.2rem; display:flex; gap:15px;">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="bottom">
-        &copy; 2025 Ghannaway Tech Systems. All rights reserved.
-    </div>
-  </footer>
+  <footer>
+    <div class="footer-grid">
+      <div>
+                <div class="footer-logo-container">
+            <img src="assets/img/logo.png" alt="GTS Logo">
+            <span style="color:white; font-weight:bold;">Ghannaway Tech</span>
+        </div>
+        <p>Empowering Africa Through Technology — software, hardware, hosting and support.</p>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+                <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="blog.html">Latest News</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact Us</h5>
+        <p style="margin-bottom:10px;">Email: <a href="mailto:ghannawaytechsystems@gmail.com">ghannawaytechsystems@gmail.com</a></p>
+        <p style="margin-bottom:10px;">Phone: +254 757 041 431</p>
+        <p>Nairobi, Kenya</p>
+        
+        <div style="margin-top:15px; font-size:1.2rem; display:flex; gap:15px;">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+        &copy; 2025 Ghannaway Tech Systems. All rights reserved.
+    </div>
+  </footer>
 
-  <script>
-    // LOADER
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("loader");
-      loader.style.opacity = "0";
-      setTimeout(() => {
-          loader.style.display = "none";
-      }, 600);
-      
-      // Trigger scroll animation on load for elements already in view
-      revealElements();
-    });
+  <script>
+    // LOADER
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = "0";
+      setTimeout(() => {
+          loader.style.display = "none";
+      }, 600);
+    });
 
-    // MOBILE MENU TOGGLE
-    const menuBtn = document.getElementById('menu-btn');
-    const nav = document.getElementById('nav');
-    const icon = menuBtn.querySelector('i');
+    // MOBILE MENU TOGGLE (Updated to use Font Awesome and ARIA)
+    const menuBtn = document.getElementById('menu-btn');
+    const nav = document.getElementById('nav');
+    const icon = menuBtn.querySelector('i');
 
-    menuBtn.addEventListener('click', () => {
-      nav.classList.toggle('nav-active');
-      
-      // Toggle icon between hamburger and close (X)
-      if(nav.classList.contains('nav-active')){
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-      } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-      }
-    });
+    menuBtn.addEventListener('click', () => {
+      const isExpanded = nav.classList.toggle('nav-active');
+      menuBtn.setAttribute('aria-expanded', isExpanded); // Toggle ARIA attribute
+      
+      // Toggle icon between hamburger and close (X)
+      if(isExpanded){
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+      } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+      }
+    });
 
-    // SCROLL ANIMATION
-    const elements = document.querySelectorAll('.content-text h2, .content-text p, .content img, .mission');
-    
-    function revealElements() {
-      const trigger = window.innerHeight * 0.85; // Trigger slightly before element is fully in view
-      
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < trigger) {
-            el.classList.add('visible');
-        }
-        // Removed the 'else' block so elements don't disappear when scrolling up
-      });
-    }
-    
-    window.addEventListener('scroll', revealElements);
-  </script>
+    // SCROLL ANIMATION (REFACTORED to use Intersection Observer API for performance)
+    const elements = document.querySelectorAll('.content-text h2, .content-text p, .content img, .mission');
+    
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: "0px",
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    };
+
+    const elementObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // When element enters viewport, add 'visible' class
+                entry.target.classList.add("visible");
+                // Stop observing this element once it's visible
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Start observing all elements
+    elements.forEach(el => elementObserver.observe(el));
+  </script>
 </body>
 </html>
