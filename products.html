@@ -1,289 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Products — Ghannaway Tech Systems (GTS)" />
-  <meta name="theme-color" content="#3b82f6" />
-  <title>Products — Ghannaway Tech Systems</title>
-  <link rel="icon" href="assets/img/logo.png" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Products — Ghannaway Tech Systems (GTS)" />
+    <meta name="theme-color" content="#3b82f6" />
+    <title>Products — Ghannaway Tech Systems</title>
+    <link rel="icon" href="assets/img/logo.png" />
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
-    html { scroll-behavior:smooth; }
-    body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",sans-serif; }
+        html { scroll-behavior:smooth; }
+        body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
 
-    /* Loader */
-    #loader {
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      background:white; display:flex; align-items:center; justify-content:center;
-      z-index:9999; transition:opacity 0.6s ease;
-    }
-    .spinner {
-      width:60px; height:60px; border:5px solid #ccc;
-      border-top-color:#2563eb; border-radius:50%;
-      animation:spin 1s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
+        /* Loader */
+        #loader {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:white; display:flex; align-items:center; justify-content:center;
+            z-index:9999; transition:opacity 0.6s ease;
+        }
+        .spinner {
+            width:60px; height:60px; border:5px solid #ccc;
+            border-top-color:#2563eb; border-radius:50%;
+            animation:spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform:rotate(360deg); } }
 
-    /* ===== HEADER ===== */
-    header {
-      position:fixed; top:0; left:0; right:0;
-      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
-      display:flex; justify-content:space-between; align-items:center;
-      padding:10px 6%; z-index:1000;
-      animation:fadeDown 0.8s ease-in-out;
-    }
-    .logo-container { display:flex; align-items:center; gap:10px; text-decoration: none; }
-    .logo-container img { width:40px; height:40px; object-fit:contain; }
-    .logo-text { font-weight:600; font-size:1.1rem; color:#2563eb; }
+        /* ===== HEADER ===== */
+        header {
+            position:fixed; top:0; left:0; right:0;
+            background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+            display:flex; justify-content:space-between; align-items:center;
+            padding:10px 6%; z-index:1000;
+            animation:fadeDown 0.8s ease-in-out;
+        }
+        /* REPAIRED: Cleaned up logo structure and styles */
+        .logo-container { display:flex; align-items:center; gap:10px; text-decoration: none; }
+        .logo-container img { width:40px; height:40px; object-fit:contain; }
+        .logo-text { font-weight:600; font-size:1.1rem; color:#2563eb; }
 
-    header nav { display:flex; gap: 20px; }
-    header nav a {
-      color:#333; text-decoration:none; font-weight:500;
-      transition:color 0.3s; position: relative;
-    }
-    header nav a:hover, header nav a.active { color:#2563eb; }
-    
-    /* Underline effect for active link */
-    header nav a.active::after {
-        content: ''; position: absolute; width: 100%; height: 2px;
-        bottom: -4px; left: 0; background: #2563eb;
-    }
+        header nav { display:flex; gap: 20px; }
+        header nav a {
+            color:#333; text-decoration:none; font-weight:500;
+            transition:color 0.3s; position: relative;
+        }
+        header nav a:hover, header nav a.active { color:#2563eb; }
+        
+        /* Underline effect for active link */
+        header nav a.active::after {
+            content: ''; position: absolute; width: 100%; height: 2px;
+            bottom: -4px; left: 0; background: #2563eb;
+        }
 
-    #menu-btn { display:none; background:none; border:none; font-size:1.8rem; cursor:pointer; color:#333; }
+        #menu-btn { display:none; background:none; border:none; font-size:1.8rem; cursor:pointer; color:#333; }
 
-    /* ===== MOBILE NAV STYLES ===== */
-    @media(max-width:768px){
-      #menu-btn { display:block; }
-      header nav {
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: #fff; border-top: 1px solid #eee;
-        flex-direction: column; padding: 20px; gap: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transform: translateY(-150%); /* Hidden by default */
-        opacity: 0; pointer-events: none;
-        transition: all 0.3s ease; z-index: 999;
-      }
-      /* Class to toggle via JS */
-      header nav.nav-active {
-        transform: translateY(0);
-        opacity: 1; pointer-events: all;
-      }
-    }
+        /* ===== MOBILE NAV STYLES ===== */
+        @media(max-width:768px){
+            #menu-btn { display:block; }
+            header nav {
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: #fff; border-top: 1px solid #eee;
+                flex-direction: column; padding: 20px; gap: 15px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transform: translateY(-150%); /* Hidden by default */
+                opacity: 0; pointer-events: none;
+                transition: all 0.3s ease; z-index: 999;
+            }
+            /* Class to toggle via JS */
+            header nav.nav-active {
+                transform: translateY(0);
+                opacity: 1; pointer-events: all;
+            }
+        }
 
 
-    /* Hero */
-    .page-hero {
-      background:linear-gradient(135deg,#2563eb,#3b82f6);
-      color:white; padding:120px 6% 60px; text-align:center;
-      animation:fadeIn 1s ease;
-    }
-    .page-hero h1 { font-size:2.8rem; margin-bottom:10px; }
-    .page-hero p { font-size:1.1rem; opacity:0.9; }
+        /* Hero */
+        .page-hero {
+            background:linear-gradient(135deg,#2563eb,#3b82f6);
+            color:white; padding:120px 6% 60px; text-align:center;
+            animation:fadeIn 1s ease;
+        }
+        .page-hero h1 { font-size:2.8rem; margin-bottom:10px; }
+        .page-hero p { font-size:1.1rem; opacity:0.9; }
 
-    /* Products */
-    .products {
-      padding:90px 6%;
-      background:url('assets/img/bg-pattern.svg') center/cover no-repeat;
-    }
-    .products h2 {
-      color:#2563eb; font-size:2rem; text-align:center; margin-bottom:10px;
-    }
-    .products p.subtitle {
-      color:#666; text-align:center; margin-bottom:50px;
-    }
+        /* Products */
+        .products {
+            padding:90px 6%;
+            background:url('assets/img/bg-pattern.svg') center/cover no-repeat;
+        }
+        .products h2 {
+            color:#2563eb; font-size:2rem; text-align:center; margin-bottom:10px;
+        }
+        .products p.subtitle {
+            color:#666; text-align:center; margin-bottom:50px;
+        }
 
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:35px;
-    }
-    .card {
-      background:white; padding:25px; border-radius:16px;
-      box-shadow:0 2px 10px rgba(0,0,0,0.06);
-      transition:transform 0.4s, box-shadow 0.4s;
-      opacity:0; transform:translateY(40px);
-    }
-    .card.show {
-      opacity:1; transform:translateY(0);
-      transition:all 0.7s ease;
-    }
-    .card:hover {
-      transform:translateY(-10px) scale(1.03);
-      box-shadow:0 10px 25px rgba(37,99,235,0.25);
-    }
-    .card img {
-      width:100%; height:180px; object-fit:cover;
-      border-radius:12px; margin-bottom:15px;
-    }
-    .card h3 { font-size:1.3rem; color:#111; margin-bottom:8px; }
-    .card p { font-size:0.95rem; color:#555; margin-bottom:15px; }
-    .card a {
-      display:inline-block; background:#2563eb; color:white;
-      padding:10px 18px; border-radius:6px; font-weight:600; text-decoration:none;
-      transition:background 0.3s, transform 0.3s;
-    }
-    .card a:hover { background:#1d4ed8; transform:scale(1.05); }
+        .grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:35px;
+        }
+        .card {
+            background:white; padding:25px; border-radius:16px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.06);
+            transition:transform 0.4s, box-shadow 0.4s;
+            /* Initial state for Intersection Observer animation */
+            opacity:0; transform:translateY(40px);
+        }
+        .card.show {
+            opacity:1; transform:translateY(0);
+            transition:all 0.7s ease;
+        }
+        .card:hover {
+            transform:translateY(-10px) scale(1.03);
+            box-shadow:0 10px 25px rgba(37,99,235,0.25);
+        }
+        .card img {
+            width:100%; height:180px; object-fit:cover;
+            border-radius:12px; margin-bottom:15px;
+        }
+        .card h3 { font-size:1.3rem; color:#111; margin-bottom:8px; }
+        .card p { font-size:0.95rem; color:#555; margin-bottom:15px; }
+        .card a {
+            display:inline-block; background:#2563eb; color:white;
+            padding:10px 18px; border-radius:6px; font-weight:600; text-decoration:none;
+            transition:background 0.3s, transform 0.3s;
+        }
+        .card a:hover { background:#1d4ed8; transform:scale(1.05); }
 
-    /* CTA Section */
-    .cta {
-      background:linear-gradient(135deg,#2563eb,#3b82f6);
-      color:white; text-align:center; padding:90px 6%;
-      animation:fadeIn 1.5s ease;
-    }
-    .cta h3 { font-size:2rem; margin-bottom:15px; }
-    .cta a {
-      display:inline-block; background:white; color:#2563eb;
-      padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600;
-      transition:transform 0.3s;
-    }
-    .cta a:hover { transform:scale(1.05); }
+        /* CTA Section */
+        .cta {
+            background:linear-gradient(135deg,#2563eb,#3b82f6);
+            color:white; text-align:center; padding:90px 6%;
+            animation:fadeIn 1.5s ease;
+        }
+        .cta h3 { font-size:2rem; margin-bottom:15px; }
+        .cta a {
+            display:inline-block; background:white; color:#2563eb;
+            padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600;
+            transition:transform 0.3s;
+        }
+        .cta a:hover { transform:scale(1.05); }
 
-    /* Footer */
-    footer {
-      background:#111827; color:#ccc; padding:60px 6% 20px;
-      animation:fadeIn 2s ease;
-    }
-    footer .footer-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:30px; margin-bottom:20px;
-    }
-    footer h4, footer h5 { color:#fff; margin-bottom:10px; }
-    footer a { color:#60a5fa; text-decoration:none; }
-    footer a:hover { text-decoration:underline; }
-    footer .bottom {
-      text-align:center; border-top:1px solid #333;
-      padding-top:15px; font-size:0.85rem;
-    }
+        /* Footer */
+        footer {
+            background:#111827; color:#ccc; padding:60px 6% 20px;
+            animation:fadeIn 2s ease;
+        }
+        footer .footer-grid {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:30px; margin-bottom:20px;
+        }
+        footer h4, footer h5 { color:#fff; margin-bottom:10px; }
+        footer a { color:#60a5fa; text-decoration:none; }
+        footer a:hover { text-decoration:underline; }
+        footer .bottom {
+            text-align:center; border-top:1px solid #333;
+            padding-top:15px; font-size:0.85rem;
+        }
 
-    @keyframes fadeIn {
-      from { opacity:0; transform:translateY(20px); }
-      to { opacity:1; transform:translateY(0); }
-    }
-  </style>
+        /* REPAIRED: Accessibility addition for reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity:0; transform:translateY(20px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        @keyframes fadeDown {
+            from { opacity:0; transform:translateY(-20px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Loader -->
-  <div id="loader"><div class="spinner"></div></div>
+    <div id="loader"><div class="spinner"></div></div>
 
-  <header>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <img src="assets/img/logo.png" alt="GTS Logo">
-      <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
-    </div>
-    <nav id="nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="products.html" class="active">Products</a>
-      <a href="team.html">Team</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <button id="menu-btn">☰</button>
-  </header>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="assets/img/logo.png" alt="GTS Logo">
+            <span class="logo-text">Ghannaway Tech Systems</span>
+        </a>
+        <nav id="nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="products.html" class="active">Products</a>
+            <a href="team.html">Team</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="menu-btn">☰</button>
+    </header>
 
-  <section class="page-hero">
-    <h1>Our Products</h1>
-    <p>Explore cutting-edge digital, cloud, and hardware innovations from GTS — built for Africa’s growing tech landscape.</p>
-  </section>
+    <section class="page-hero">
+        <h1>Our Products</h1>
+        <p>Explore cutting-edge digital, cloud, and hardware innovations from GTS — built for Africa’s growing tech landscape.</p>
+    </section>
 
-  <section class="products">
-    <h2>Featured & Upcoming Products</h2>
-    <p class="subtitle">Our range of intelligent systems, tools, and services continues to grow every month.</p>
+    <section class="products">
+        <h2>Featured & Upcoming Products</h2>
+        <p class="subtitle">Our range of intelligent systems, tools, and services continues to grow every month.</p>
 
-    <div class="grid">
-      <div class="card"><img src="assets/img/products/app1.jpg" alt="GTS Noter"><h3>GTS Noter</h3><p>Smart note and task manager designed for individuals and enterprise teams.</p><a href="#">Learn More</a></div>
+        <div class="grid">
+            <div class="card"><img src="assets/img/products/app1.jpg" alt="GTS Noter screenshot"><h3>GTS Noter</h3><p>Smart note and task manager designed for individuals and enterprise teams.</p><a href="#">Learn More</a></div>
 
-      <div class="card"><img src="assets/img/products/app2.jpg" alt="GTS CloudDesk"><h3>GTS CloudDesk</h3><p>Online workspace with team collaboration tools and secure file storage.</p><a href="#">View Details</a></div>
+            <div class="card"><img src="assets/img/products/app2.jpg" alt="GTS CloudDesk user interface"><h3>GTS CloudDesk</h3><p>Online workspace with team collaboration tools and secure file storage.</p><a href="#">View Details</a></div>
 
-      <div class="card"><img src="assets/img/products/app3.jpg" alt="GTS POS"><h3>GTS POS</h3><p>Point-of-Sale system with inventory, receipts, and reports for any retail business.</p><a href="#">Try Demo</a></div>
+            <div class="card"><img src="assets/img/products/app3.jpg" alt="GTS POS screen"><h3>GTS POS</h3><p>Point-of-Sale system with inventory, receipts, and reports for any retail business.</p><a href="#">Try Demo</a></div>
 
-      <div class="card"><img src="assets/img/products/security.jpg" alt="GTS SecureNet"><h3>GTS SecureNet</h3><p>Enterprise-grade network monitoring, firewalls, and system alerts.</p><a href="#">More Info</a></div>
+            <div class="card"><img src="assets/img/products/security.jpg" alt="GTS SecureNet network monitoring dashboard"><h3>GTS SecureNet</h3><p>Enterprise-grade network monitoring, firewalls, and system alerts.</p><a href="#">More Info</a></div>
 
-      <div class="card"><img src="assets/img/products/sms.png" alt="GTS SMS Gateway"><h3>GTS SMS Gateway</h3><p>Send, receive, and automate SMS or M-PESA alerts directly from your systems.</p><a href="#">View Plans</a></div>
+            <div class="card"><img src="assets/img/products/sms.png" alt="GTS SMS Gateway interface"><h3>GTS SMS Gateway</h3><p>Send, receive, and automate SMS or M-PESA alerts directly from your systems.</p><a href="#">View Plans</a></div>
 
-      <div class="card"><img src="assets/img/products/school.jpg" alt="GTS EduSuite"><h3>GTS EduSuite</h3><p>Complete school management platform — students, finance, and academics.</p><a href="#">Discover</a></div>
+            <div class="card"><img src="assets/img/products/school.jpg" alt="GTS EduSuite learning management system"><h3>GTS EduSuite</h3><p>Complete school management platform — students, finance, and academics.</p><a href="#">Discover</a></div>
 
-      <div class="card"><img src="assets/img/products/iot.jpg" alt="GTS IoT Hub"><h3>GTS IoT Hub</h3><p>Connect and monitor IoT devices in real-time for smart agriculture and logistics.</p><a href="#">Explore</a></div>
+            <div class="card"><img src="assets/img/products/iot.jpg" alt="GTS IoT Hub sensors and dashboard"><h3>GTS IoT Hub</h3><p>Connect and monitor IoT devices in real-time for smart agriculture and logistics.</p><a href="#">Explore</a></div>
 
-      <div class="card"><img src="assets/img/products/webhost.jpg" alt="GTS WebHost"><h3>GTS WebHost</h3><p>Affordable and secure cloud hosting with CPanel, SSL, and email integration.</p><a href="#">Start Hosting</a></div>
+            <div class="card"><img src="assets/img/products/webhost.jpg" alt="GTS WebHost control panel"><h3>GTS WebHost</h3><p>Affordable and secure cloud hosting with CPanel, SSL, and email integration.</p><a href="#">Start Hosting</a></div>
 
-      <div class="card"><img src="assets/img/products/ai.jpg" alt="GTS AI Assistant"><h3>GTS AI Assistant</h3><p>Custom AI chatbot and automation system for customer service and marketing.</p><a href="#">Get Demo</a></div>
+            <div class="card"><img src="assets/img/products/ai.jpg" alt="GTS AI Assistant chatbot interface"><h3>GTS AI Assistant</h3><p>Custom AI chatbot and automation system for customer service and marketing.</p><a href="#">Get Demo</a></div>
 
-      <div class="card"><img src="assets/img/products/hardware.jpg" alt="GTS Hardware Solutions"><h3>GTS Hardware Solutions</h3><p>Routers, IoT sensors, Raspberry Pi setups, and Starlink integration kits.</p><a href="#">See Products</a></div>
-    </div>
-  </section>
+            <div class="card"><img src="assets/img/products/hardware.jpg" alt="GTS Hardware Solutions networking equipment"><h3>GTS Hardware Solutions</h3><p>Routers, IoT sensors, Raspberry Pi setups, and Starlink integration kits.</p><a href="#">See Products</a></div>
+        </div>
+    </section>
 
-  <section class="cta">
-    <h3>Need a Custom Product?</h3>
-    <p>Let’s build your next innovation together — software, hardware, or full-stack systems.</p>
-    <a href="contact.html">Request a Custom Build</a>
-  </section>
+    <section class="cta">
+        <h3>Need a Custom Product?</h3>
+        <p>Let’s build your next innovation together — software, hardware, or full-stack systems.</p>
+        <a href="contact.html">Request a Custom Build</a>
+    </section>
 
-  <footer>
-    <div class="footer-grid">
-      <div>
-        <img src="assets/img/logo.png" alt="GTS Logo" style="width:45px;height:45px;margin-bottom:8px;">
-        <h4>Ghannaway Tech Systems</h4>
-        <p>Empowering Africa Through Technology — software, hardware, hosting and support.</p>
-      </div>
-      <div>
-        <h5>Quick Links</h5>
-        <a href="about.html">About</a><br>
-        <a href="services.html">Services</a><br>
-        <a href="products.html">Products</a><br>
-        <a href="blog.html">Blog</a>
-      </div>
-      <div>
-        <h5>Contact</h5>
-        <p>Email: <a href="mailto:ghannawaytechsystems@gmail.com">ghannawaytechsystems@gmail.com</a></p>
-        <p>Phone: +254 757 041 431</p>
-        <p>Nairobi, Kenya</p>
-      </div>
-    </div>
-    <div class="bottom">© 2025 Ghannaway Tech Systems. All rights reserved.</div>
-  </footer>
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="assets/img/logo.png" alt="GTS Logo" style="width:45px;height:45px;margin-bottom:8px;">
+                <h4>Ghannaway Tech Systems</h4>
+                <p>Empowering Africa Through Technology — software, hardware, hosting and support.</p>
+            </div>
+            <div>
+                <h5>Quick Links</h5>
+                <a href="about.html">About</a><br>
+                <a href="services.html">Services</a><br>
+                <a href="products.html">Products</a><br>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div>
+                <h5>Contact</h5>
+                <p>Email: <a href="mailto:ghannawaytechsystems@gmail.com">ghannawaytechsystems@gmail.com</a></p>
+                <p>Phone: +254 757 041 431</p>
+                <p>Nairobi, Kenya</p>
+            </div>
+        </div>
+        <div class="bottom">© 2025 Ghannaway Tech Systems. All rights reserved.</div>
+    </footer>
 
-  <script>
-    // Loader fade-out
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("loader");
-      loader.style.opacity = "0";
-      setTimeout(() => loader.style.display = "none", 600);
-    });
+    <script>
+        // Loader fade-out
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader");
+            loader.style.opacity = "0";
+            setTimeout(() => loader.style.display = "none", 600);
+        });
 
-    // MOBILE MENU TOGGLE
-    const menuBtn = document.getElementById('menu-btn');
-    const nav = document.getElementById('nav');
-    const icon = menuBtn.querySelector('i');
+        // MOBILE MENU TOGGLE
+        const menuBtn = document.getElementById('menu-btn');
+        const nav = document.getElementById('nav');
 
-    menuBtn.addEventListener('click', () => {
-      nav.classList.toggle('nav-active');
-      
-      // Toggle icon between hamburger and close (X)
-      if(nav.classList.contains('nav-active')){
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-      } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-      }
-    });
-	
-    // Scroll animations
-    const cards = document.querySelectorAll('.card');
-    const showOnScroll = () => {
-      const triggerBottom = window.innerHeight * 0.85;
-      cards.forEach(card => {
-        const boxTop = card.getBoundingClientRect().top;
-        if(boxTop < triggerBottom) card.classList.add('show');
-      });
-    };
-    window.addEventListener('scroll', showOnScroll);
-    showOnScroll();
-  </script>
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            // REPAIRED: Toggling text content (☰ / ✖) for mobile button icon
+            menuBtn.textContent = nav.classList.contains('nav-active') ? "✖" : "☰";
+        });
+        
+        // REPAIRED: Scroll animations now use the highly performant Intersection Observer API
+        const cards = document.querySelectorAll('.card');
+
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: "0px",
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        };
+
+        const cardObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // When card enters viewport, add 'show' class
+                    entry.target.classList.add("show");
+                    // Stop observing this card once it's visible
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        // Start observing all cards
+        cards.forEach(card => cardObserver.observe(card));
+    </script>
 </body>
 </html>
