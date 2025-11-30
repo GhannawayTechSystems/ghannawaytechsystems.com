@@ -207,18 +207,24 @@
       nav.style.border = '1px solid #ddd';
       nav.style.borderRadius = '6px';
     });
-
-    // SCROLL ANIMATION
+  // SCROLL ANIMATION
     const elements = document.querySelectorAll('.content-text h2, .content-text p, .content img, .mission');
-    const revealElements = () => {
+    
+    function revealElements() {
       const trigger = window.innerHeight * 0.85;
-      elements.forEach(el=>{
+      elements.forEach(el => {
         const rect = el.getBoundingClientRect();
-        if(rect.top < trigger) el.classList.add('visible');
+        if (rect.top < trigger) el.classList.add('visible');
+        else el.classList.remove('visible'); // optional if you want them to fade out on scroll up
       });
-    };
+    }
+    
+    // Run on scroll
     window.addEventListener('scroll', revealElements);
-    revealElements();
+    // Run on load to reveal elements already in view
+    window.addEventListener('load', revealElements);
+
   </script>
 </body>
 </html>
+
