@@ -29,35 +29,36 @@
   }
   @keyframes spin{to{transform:rotate(360deg);}}
 
-  /* HEADER */
-  header{
-    position:fixed;top:0;left:0;right:0;
-    background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.1);
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 6%;z-index:100;transition:background 0.3s,color 0.3s,box-shadow 0.3s;
-  }
-  header.scrolled{
-    background:#2563eb;color:white;
-    box-shadow:0 3px 8px rgba(0,0,0,0.2);
-  }
-  header.scrolled nav a{color:white;}
-  header img{width:40px;height:40px;object-fit:contain;transition:transform 0.3s;}
-  header img:hover{transform:rotate(10deg) scale(1.1);}
-  header nav a{
-    color:#333;text-decoration:none;margin:0 10px;font-weight:500;
-    position:relative;transition:color 0.3s;
-  }
-  header nav a::after{
-    content:"";position:absolute;bottom:-3px;left:0;width:0;height:2px;
-    background:#2563eb;transition:width 0.3s;
-  }
-  header nav a:hover::after{width:100%;}
-  header nav a:hover,.active{color:#2563eb;}
-  #menu-btn{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;}
-  @media(max-width:768px){
-    header nav{display:none;}
-    #menu-btn{display:block;color:#333;}
-  }
+/* HEADER */
+header{
+  position:fixed;top:0;left:0;right:0;
+  background:#fff; /* always white */
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 6%;z-index:100;transition:box-shadow 0.3s;
+}
+/* remove scrolled color change */
+header.scrolled{
+  box-shadow:0 3px 8px rgba(0,0,0,0.15); /* just slightly stronger shadow */
+}
+header img{width:40px;height:40px;object-fit:contain;transition:transform 0.3s;}
+header img:hover{transform:rotate(10deg) scale(1.1);}
+header nav a{
+  color:#333;text-decoration:none;margin:0 10px;font-weight:500;
+  position:relative;transition:color 0.3s;
+}
+header nav a::after{
+  content:"";position:absolute;bottom:-3px;left:0;width:0;height:2px;
+  background:#2563eb;transition:width 0.3s;
+}
+header nav a:hover::after{width:100%;}
+header nav a:hover,.active{color:#2563eb;}
+#menu-btn{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;}
+@media(max-width:768px){
+  header nav{display:none;}
+  #menu-btn{display:block;color:#333;}
+}
+
 
   /* HERO */
   .hero{
@@ -277,3 +278,4 @@
 </script>
 </body>
 </html>
+
