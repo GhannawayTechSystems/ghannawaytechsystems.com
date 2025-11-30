@@ -22,60 +22,63 @@
       width:60px; height:60px; border:6px solid #e5e7eb;
       border-top-color:#2563eb; border-radius:50%; animation:spin 1s linear infinite;
     }
-    @keyframes spin {
-      to { transform:rotate(360deg); }
-    }
+    @keyframes spin { to { transform:rotate(360deg); } }
 
     /* ===== HEADER ===== */
     header {
       position:fixed; top:0; left:0; right:0;
-      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+      background:#fff;
+      box-shadow:0 2px 4px rgba(0,0,0,0.1);
       display:flex; justify-content:space-between; align-items:center;
       padding:10px 6%; z-index:1000;
       animation:fadeDown 0.8s ease-in-out;
     }
-    .logo-container { display:flex; align-items:center; gap:10px; text-decoration: none; }
+    .logo-container { display:flex; align-items:center; gap:10px; text-decoration:none; }
     .logo-container img { width:40px; height:40px; object-fit:contain; }
     .logo-text { font-weight:600; font-size:1.1rem; color:#2563eb; }
 
-    header nav { display:flex; gap: 20px; }
+    header nav { display:flex; gap:20px; }
     header nav a {
-      color:#333; text-decoration:none; font-weight:500;
-      transition:color 0.3s; position: relative;
+      color:#333; text-decoration:none; font-weight:500; position:relative;
     }
-    header nav a:hover, header nav a.active { color:#2563eb; }
-    
-    /* Underline effect for active link */
+    header nav a:hover,
+    header nav a.active { color:#2563eb; }
+
     header nav a.active::after {
-        content: ''; position: absolute; width: 100%; height: 2px;
-        bottom: -4px; left: 0; background: #2563eb;
+      content:""; position:absolute; width:100%; height:2px;
+      bottom:-4px; left:0; background:#2563eb;
     }
 
-    #menu-btn { display:none; background:none; border:none; font-size:1.8rem; cursor:pointer; color:#333; }
+    #menu-btn {
+      display:none; background:none; border:none;
+      font-size:2rem; cursor:pointer; color:#333;
+    }
 
-    /* ===== MOBILE NAV STYLES ===== */
+    /* ===== MOBILE NAV ===== */
     @media(max-width:768px){
       #menu-btn { display:block; }
+
       header nav {
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: #fff; border-top: 1px solid #eee;
-        flex-direction: column; padding: 20px; gap: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transform: translateY(-150%); /* Hidden by default */
-        opacity: 0; pointer-events: none;
-        transition: all 0.3s ease; z-index: 999;
+        position:absolute; top:100%; left:0; right:0;
+        background:#fff; border-top:1px solid #eee;
+        flex-direction:column; padding:20px; gap:15px;
+        transform:translateY(-150%); opacity:0;
+        pointer-events:none;
+        transition:all .3s ease;
+        z-index:999;
       }
-      /* Class to toggle via JS */
+
       header nav.nav-active {
-        transform: translateY(0);
-        opacity: 1; pointer-events: all;
+        transform:translateY(0);
+        opacity:1;
+        pointer-events:auto;
       }
     }
 
     .page-hero {
       background:linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
-      color:white; padding:120px 6% 60px;
-      text-align:center; position:relative; overflow:hidden;
+      color:white; padding:120px 6% 60px; text-align:center;
+      position:relative; overflow:hidden;
     }
     .page-hero::after {
       content:''; position:absolute; inset:0;
@@ -90,15 +93,12 @@
     .page-hero p { font-size:1.1rem; position:relative; z-index:1; }
 
     .services {
-      padding:80px 6%;
-      animation:fadeUp 1s ease;
+      padding:80px 6%; animation:fadeUp 1s ease;
     }
     .services h2 {
       color:#2563eb; font-size:2rem; text-align:center; margin-bottom:10px;
     }
-    .services p.subtitle {
-      color:#666; text-align:center; margin-bottom:50px;
-    }
+    .services p.subtitle { color:#666; text-align:center; margin-bottom:50px; }
 
     .grid {
       display:grid;
@@ -108,30 +108,26 @@
     .card {
       background:white; padding:25px; border-radius:12px;
       box-shadow:0 4px 10px rgba(0,0,0,0.05);
-      transition:transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s;
       opacity:0; transform:translateY(30px);
+      transition:transform .4s ease, box-shadow .4s ease, opacity .6s;
     }
-    .card.visible {
-      opacity:1; transform:translateY(0);
-    }
+    .card.visible { opacity:1; transform:translateY(0); }
     .card:hover { transform:translateY(-5px) scale(1.02); box-shadow:0 8px 18px rgba(0,0,0,0.08); }
     .card img {
-      width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:15px;
+      width:100%; height:180px; object-fit:cover;
+      border-radius:10px; margin-bottom:15px;
     }
-    .card h3 { font-size:1.2rem; color:#111; margin-bottom:10px; }
-    .card p { font-size:0.95rem; color:#555; }
 
     .cta {
       background:linear-gradient(135deg,#3b82f6,#2563eb);
-      color:white; text-align:center;
-      padding:80px 6%;
+      color:white; text-align:center; padding:80px 6%;
       animation:fadeUp 1s ease;
     }
-    .cta h3 { font-size:1.8rem; margin-bottom:15px; }
     .cta a {
       display:inline-block; background:white; color:#2563eb;
-      padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:600;
-      transition:transform 0.3s;
+      padding:10px 20px; border-radius:6px; font-weight:600;
+      text-decoration:none;
+      transition:transform .3s;
     }
     .cta a:hover { transform:scale(1.05); }
 
@@ -143,15 +139,16 @@
       display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       gap:30px; margin-bottom:20px;
     }
+
     footer h4, footer h5 { color:#fff; margin-bottom:10px; }
     footer a { color:#60a5fa; text-decoration:none; }
     footer a:hover { text-decoration:underline; }
+
     footer .bottom {
       text-align:center; border-top:1px solid #333;
       padding-top:15px; font-size:0.85rem;
     }
 
-    /* Animations */
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(40px); }
       to { opacity:1; transform:translateY(0); }
@@ -162,18 +159,21 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Loader -->
-  <div id="loader">
-    <div class="spinner"></div>
-  </div>
+  <div id="loader"><div class="spinner"></div></div>
 
+  <!-- HEADER -->
   <header>
     <div style="display:flex;align-items:center;gap:10px;">
       <img src="assets/img/logo.png" alt="GTS Logo">
-      <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
+      <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">
+        Ghannaway Tech Systems
+      </a>
     </div>
+
     <nav id="nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -183,6 +183,7 @@
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
     </nav>
+
     <button id="menu-btn">☰</button>
   </header>
 
@@ -218,6 +219,7 @@
         <h4>Ghannaway Tech Systems</h4>
         <p>Empowering Africa Through Technology — software, hardware, hosting and support.</p>
       </div>
+
       <div>
         <h5>Quick Links</h5>
         <a href="about.html">About</a><br>
@@ -225,6 +227,7 @@
         <a href="products.html">Products</a><br>
         <a href="blog.html">Blog</a>
       </div>
+
       <div>
         <h5>Contact</h5>
         <p>Email: <a href="mailto:ghannawaytechsystems@gmail.com">ghannawaytechsystems@gmail.com</a></p>
@@ -232,6 +235,7 @@
         <p>Nairobi, Kenya</p>
       </div>
     </div>
+
     <div class="bottom">© 2025 Ghannaway Tech Systems. All rights reserved.</div>
   </footer>
 
@@ -240,40 +244,30 @@
     window.addEventListener("load", () => {
       const loader = document.getElementById("loader");
       loader.style.opacity = "0";
-      setTimeout(()=> loader.style.display="none", 600);
+      setTimeout(() => loader.style.display="none", 600);
     });
 
-    // MOBILE MENU TOGGLE
-    const menuBtn = document.getElementById('menu-btn');
-    const nav = document.getElementById('nav');
-    const icon = menuBtn.querySelector('i');
+    // MOBILE MENU TOGGLE — FIXED
+    const menuBtn = document.getElementById("menu-btn");
+    const nav = document.getElementById("nav");
 
-    menuBtn.addEventListener('click', () => {
-      nav.classList.toggle('nav-active');
-      
-      // Toggle icon between hamburger and close (X)
-      if(nav.classList.contains('nav-active')){
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-      } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-      }
+    menuBtn.addEventListener("click", () => {
+      nav.classList.toggle("nav-active");
+      menuBtn.textContent = nav.classList.contains("nav-active") ? "✖" : "☰";
     });
 
     // Scroll animation for cards
-    const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll(".card");
     const revealCards = () => {
       const trigger = window.innerHeight * 0.85;
-      cards.forEach(card=>{
+      cards.forEach(card => {
         const rect = card.getBoundingClientRect();
-        if(rect.top < trigger) card.classList.add('visible');
+        if(rect.top < trigger) card.classList.add("visible");
       });
     };
-    window.addEventListener('scroll', revealCards);
+    window.addEventListener("scroll", revealCards);
     revealCards();
   </script>
+
 </body>
 </html>
-
-
