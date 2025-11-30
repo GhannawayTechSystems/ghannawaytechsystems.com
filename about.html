@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="About Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology." />
+  <meta name="description" content="About — Ghannaway Tech Systems (GTS) — Empowering Africa Through Technology." />
   <meta name="theme-color" content="#3b82f6" />
   <title>About — Ghannaway Tech Systems</title>
   <link rel="icon" href="assets/img/logo.png" />
@@ -13,52 +13,31 @@
     html { scroll-behavior: smooth; }
     body { background:#f9fafb; color:#222; line-height:1.6; overflow-x:hidden; }
 
-    /* ===== PRELOADER ===== */
-    #preloader {
-      position:fixed; inset:0;
-      background:linear-gradient(135deg,#1e3a8a,#2563eb,#3b82f6);
-      display:flex; justify-content:center; align-items:center;
-      z-index:9999;
+    /* ===== LOADER ===== */
+    #loader {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:white; display:flex; align-items:center; justify-content:center;
+      z-index:2000; transition:opacity 0.6s ease;
     }
-    #preloader.hidden { opacity:0; pointer-events:none; transition:opacity 0.5s ease; }
     .spinner {
-      width:70px; height:70px;
-      border:6px solid rgba(255,255,255,0.3);
-      border-top:6px solid white;
-      border-radius:50%;
-      animation:spin 1s linear infinite;
+      width:60px; height:60px; border:6px solid #e5e7eb;
+      border-top-color:#2563eb; border-radius:50%; animation:spin 1s linear infinite;
     }
     @keyframes spin { to { transform:rotate(360deg); } }
-
-    /* ===== BACKGROUND SHAPES ===== */
-    .bg-shape {
-      position:absolute; border-radius:50%; filter:blur(90px); opacity:0.25; z-index:0;
-    }
-    .bg1 { top:-100px; left:-100px; width:300px; height:300px; background:#2563eb; animation:float 6s ease-in-out infinite; }
-    .bg2 { bottom:-100px; right:-100px; width:350px; height:350px; background:#3b82f6; animation:float 8s ease-in-out infinite reverse; }
-    @keyframes float {
-      0%,100% { transform:translateY(0); }
-      50% { transform:translateY(-20px); }
-    }
 
     /* ===== HEADER ===== */
     header {
       position:fixed; top:0; left:0; right:0;
       background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
       display:flex; justify-content:space-between; align-items:center;
-      padding:10px 6%; z-index:1000; transition:all 0.4s ease;
+      padding:10px 6%; z-index:100;
+      animation:fadeDown 0.8s ease-in-out;
     }
-    header.scrolled { background:#2563eb; color:white; box-shadow:0 3px 8px rgba(0,0,0,0.2); }
-    header.scrolled a { color:white; }
     header img { width:40px; height:40px; object-fit:contain; }
     header nav a {
-      color:#333; text-decoration:none; margin:0 10px; font-weight:500; position:relative;
+      color:#333; text-decoration:none; margin:0 10px; font-weight:500;
+      transition:color 0.3s;
     }
-    header nav a::after {
-      content:""; position:absolute; bottom:-3px; left:0; width:0; height:2px;
-      background:#2563eb; transition:width 0.3s;
-    }
-    header nav a:hover::after { width:100%; }
     header nav a:hover, .active { color:#2563eb; }
     #menu-btn { display:none; background:none; border:none; font-size:1.6rem; }
     @media(max-width:768px){
@@ -66,17 +45,20 @@
       #menu-btn { display:block; color:#333; }
     }
 
-    main { padding-top:90px; position:relative; z-index:1; }
-
     /* ===== HERO ===== */
     .hero {
       background:linear-gradient(135deg,#2563eb,#3b82f6);
-      color:white; text-align:center;
-      padding:120px 6% 90px;
-      animation:fadeIn 1s ease forwards;
+      color:white; text-align:center; padding:120px 6% 60px;
+      position:relative; overflow:hidden;
     }
-    .hero h1 { font-size:2.5rem; margin-bottom:15px; }
-    .hero p { font-size:1.1rem; max-width:700px; margin:0 auto; }
+    .hero::after {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(circle at 20% 40%, rgba(255,255,255,0.15), transparent 70%);
+      animation:moveBg 6s infinite alternate ease-in-out;
+    }
+    @keyframes moveBg { 0% { background-position:0 0; } 100% { background-position:100px 100px; } }
+    .hero h1 { font-size:2.5rem; margin-bottom:10px; position:relative; z-index:1; }
+    .hero p { font-size:1.1rem; position:relative; z-index:1; max-width:700px; margin:0 auto; }
 
     /* ===== CONTENT ===== */
     .content {
@@ -89,20 +71,18 @@
     .content img {
       width:100%; border-radius:10px; object-fit:cover;
       opacity:0; transform:translateY(30px);
+      transition:all 0.6s ease;
     }
-    .content-text h2 {
-      color:#2563eb; font-size:1.8rem; margin-bottom:15px;
+    .content-text h2, .content-text p {
       opacity:0; transform:translateY(30px);
-    }
-    .content-text p {
-      color:#555; margin-bottom:15px;
-      opacity:0; transform:translateY(30px);
+      transition:all 0.6s ease;
     }
 
     /* ===== MISSION ===== */
     .mission {
       background:#eef2ff; text-align:center;
-      padding:100px 6%; opacity:0; transform:translateY(30px);
+      padding:80px 6%; opacity:0; transform:translateY(30px);
+      transition:all 0.6s ease;
     }
     .mission h2 { color:#2563eb; font-size:1.8rem; margin-bottom:20px; }
     .mission p { color:#444; max-width:800px; margin:0 auto 10px; }
@@ -124,23 +104,18 @@
     }
 
     /* ===== ANIMATIONS ===== */
-    @keyframes fadeIn {
-      from { opacity:0; transform:translateY(20px); }
-      to { opacity:1; transform:translateY(0); }
-    }
-    .visible { animation:fadeIn 1s ease forwards; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    .visible { opacity:1; transform:translateY(0); transition:all 0.6s ease; }
   </style>
 </head>
 <body>
 
-  <!-- PRELOADER -->
-  <div id="preloader"><div class="spinner"></div></div>
+  <!-- LOADER -->
+  <div id="loader"><div class="spinner"></div></div>
 
-  <!-- BACKGROUND GRAPHICS -->
-  <div class="bg-shape bg1"></div>
-  <div class="bg-shape bg2"></div>
-
-  <header id="header">
+  <!-- HEADER -->
+  <header>
     <div style="display:flex;align-items:center;gap:10px;">
       <img src="assets/img/logo.png" alt="GTS Logo">
       <a href="index.html" style="font-weight:600;font-size:1.1rem;color:#2563eb;text-decoration:none;">Ghannaway Tech Systems</a>
@@ -157,35 +132,35 @@
     <button id="menu-btn">☰</button>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>About Ghannaway Tech Systems</h1>
-      <p>We are a forward-thinking technology company dedicated to empowering Africa through innovation, digital transformation, and sustainable IT solutions.</p>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>About Ghannaway Tech Systems</h1>
+    <p>We are a forward-thinking technology company dedicated to empowering Africa through innovation, digital transformation, and sustainable IT solutions.</p>
+  </section>
 
-    <section class="content">
-      <div class="content-text">
-        <h2>Who We Are</h2>
-        <p>Founded by visionary technologist <strong>Elvis Ndombi</strong>, Ghannaway Tech Systems (GTS) delivers smart, scalable technology solutions for businesses, institutions, and individuals. Our expertise spans software development, cloud infrastructure, networking, and automation.</p>
-        <p>At GTS, we believe that technology should simplify life and drive growth. We build tools, platforms, and systems that enable people to work smarter, connect seamlessly, and achieve more.</p>
-      </div>
-      <div>
-        <img src="assets/img/about.png" alt="About GTS">
-      </div>
-    </section>
+  <!-- CONTENT -->
+  <section class="content">
+    <div class="content-text">
+      <h2>Who We Are</h2>
+      <p>Founded by visionary technologist <strong>Elvis Ndombi</strong>, Ghannaway Tech Systems (GTS) delivers smart, scalable technology solutions for businesses, institutions, and individuals. Our expertise spans software development, cloud infrastructure, networking, and automation.</p>
+      <p>At GTS, we believe that technology should simplify life and drive growth. We build tools, platforms, and systems that enable people to work smarter, connect seamlessly, and achieve more.</p>
+    </div>
+    <div>
+      <img src="assets/img/about.png" alt="About GTS">
+    </div>
+  </section>
 
-    <section class="mission">
-      <h2>Our Mission</h2>
-      <p>To empower individuals and organizations across Africa through reliable, affordable, and innovative technology solutions.</p>
+  <!-- MISSION -->
+  <section class="mission">
+    <h2>Our Mission</h2>
+    <p>To empower individuals and organizations across Africa through reliable, affordable, and innovative technology solutions.</p>
+    <h2>Our Vision</h2>
+    <p>To be the leading provider of digital transformation and IT infrastructure in Africa, inspiring the next generation of creators and innovators.</p>
+    <h2>Our Values</h2>
+    <p>Integrity, innovation, inclusivity, and impact — we work to build trust, foster creativity, and ensure technology benefits everyone.</p>
+  </section>
 
-      <h2>Our Vision</h2>
-      <p>To be the leading provider of digital transformation and IT infrastructure in Africa, inspiring the next generation of creators and innovators.</p>
-
-      <h2>Our Values</h2>
-      <p>Integrity, innovation, inclusivity, and impact — we work to build trust, foster creativity, and ensure technology benefits everyone.</p>
-    </section>
-  </main>
-
+  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div>
@@ -202,59 +177,48 @@
       </div>
       <div>
         <h5>Contact</h5>
-        <p>Email: <a href="mailto:info@ghannawaytech.co.ke">info@ghannawaytech.co.ke</a></p>
+        <p>Email: <a href="mailto:ghannawaytechsystems@gmail.com">ghannawaytechsystems@gmail.com</a></p>
         <p>Phone: +254 757 041 431</p>
-        <p>Oloitoktok, Kenya</p>
+        <p>Nairobi, Kenya</p>
       </div>
     </div>
     <div class="bottom">© 2025 Ghannaway Tech Systems. All rights reserved.</div>
   </footer>
 
   <script>
-    // PRELOADER
-    window.addEventListener('load', () => {
-      document.getElementById('preloader').classList.add('hidden');
+    // LOADER
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = "0";
+      setTimeout(()=> loader.style.display="none", 600);
     });
 
-    // MENU
+    // MOBILE MENU
     const menuBtn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav');
-    const header = document.getElementById('header');
     menuBtn.addEventListener('click', ()=>{
-      const open = nav.style.display === 'flex';
-      nav.style.display = open ? 'none' : 'flex';
-      if(!open){
-        Object.assign(nav.style,{
-          flexDirection:'column',
-          background:'#fff',
-          position:'absolute',
-          top:'60px',
-          right:'6%',
-          padding:'10px',
-          border:'1px solid #ddd',
-          borderRadius:'6px',
-          boxShadow:'0 4px 8px rgba(0,0,0,0.1)',
-        });
-      }
+      nav.style.display = (nav.style.display==='flex') ? 'none' : 'flex';
+      nav.style.flexDirection = 'column';
+      nav.style.background = '#fff';
+      nav.style.position = 'absolute';
+      nav.style.top = '60px';
+      nav.style.right = '6%';
+      nav.style.padding = '10px';
+      nav.style.border = '1px solid #ddd';
+      nav.style.borderRadius = '6px';
     });
 
-    // SCROLL EFFECTS
+    // SCROLL ANIMATION
     const elements = document.querySelectorAll('.content-text h2, .content-text p, .content img, .mission');
-    function reveal() {
-      const triggerBottom = window.innerHeight * 0.85;
-      elements.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < triggerBottom) el.classList.add('visible');
+    const revealElements = () => {
+      const trigger = window.innerHeight * 0.85;
+      elements.forEach(el=>{
+        const rect = el.getBoundingClientRect();
+        if(rect.top < trigger) el.classList.add('visible');
       });
-    }
-    window.addEventListener('scroll', reveal);
-    reveal();
-
-    // HEADER COLOR ON SCROLL
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 50) header.classList.add('scrolled');
-      else header.classList.remove('scrolled');
-    });
+    };
+    window.addEventListener('scroll', revealElements);
+    revealElements();
   </script>
 </body>
 </html>
