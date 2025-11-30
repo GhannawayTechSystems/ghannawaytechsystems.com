@@ -272,10 +272,16 @@ header nav a:hover,.active{color:#2563eb;}
   }
   window.addEventListener('scroll',revealOnScroll);
   revealOnScroll();
-
-  // HEADER SCROLL EFFECT
-  window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>50));
+// HEADER SCROLL EFFECT — remove color toggle
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 50){
+    header.classList.add('scrolled'); // only adds shadow
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
 </script>
 </body>
 </html>
+
 
