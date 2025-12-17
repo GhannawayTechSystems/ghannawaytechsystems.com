@@ -1,125 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- ================= BASIC META ================= -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ghannaway Tech Systems (GTS) provides custom software development, IT consulting, network infrastructure, and cloud hosting services for businesses and institutions across Africa, Kenya in Nairobi.">
+  <title>Ghannaway Tech Systems (GTS) | IT Consulting & Software Development in Kenya & Africa</title>
+  <meta name="description" content="Ghannaway Tech Systems (GTS) offers IT consulting, custom software development, cloud hosting, networking, and POS systems for businesses in Kenya and across Africa.">
+  <meta name="keywords" content="IT consulting Kenya, software development Africa, cloud hosting Kenya, networking Nairobi, POS systems Africa, Ghannaway Tech Systems">
+  <meta name="author" content="Ghannaway Tech Systems">
   <meta name="theme-color" content="#2563eb">
-  <title>Ghannaway Tech Systems (GTS) | IT Consulting & Software Development in Africa</title>
+
+  <!-- ================= SEO & SOCIAL ================= -->
+  <link rel="canonical" href="https://ghannawaytechsystems.github.io/ghannawaytechsystems.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ghannaway Tech Systems | IT Consulting & Software Development">
+  <meta property="og:description" content="Empowering Africa through technology with software, cloud, networking, and IT services.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ghannawaytechsystems.github.io/ghannawaytechsystems.com/">
+  <meta property="og:image" content="https://ghannawaytechsystems.github.io/ghannawaytechsystems.com/assets/img/hero.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ghannaway Tech Systems">
+  <meta name="twitter:description" content="IT consulting, software development & cloud solutions for Africa.">
+  <meta name="twitter:image" content="https://ghannawaytechsystems.github.io/ghannawaytechsystems.com/assets/img/hero.png">
+
+  <!-- ================= ICONS ================= -->
   <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-
+  <!-- ================= STYLES ================= -->
   <style>
-    /* ===== RESET & BASICS ===== */
-    * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", sans-serif; }
-    html { scroll-behavior:smooth; }
-    body { background:#f9fafb; color:#1f2937; line-height:1.6; overflow-x:hidden; }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:#f9fafb;color:#1f2937;line-height:1.6}
 
-    /* ===== PRELOADER ===== */
-    #preloader {
-      position:fixed; inset:0;
-      background: #fff;
-      display:flex; align-items:center; justify-content:center;
-      z-index:10000; transition:opacity 0.6s ease;
+    header{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      background:#fff;display:flex;align-items:center;justify-content:space-between;
+      padding:12px 6%;box-shadow:0 2px 6px rgba(0,0,0,.08)
     }
-    .spinner {
-      width:60px; height:60px; border:6px solid #e5e7eb;
-      border-top-color:#2563eb; border-radius:50%;
-      animation:spin 1s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{width:40px;height:40px}
+    .logo span{font-weight:700;color:#2563eb}
 
-    /* ===== HEADER (Consistent with About Page) ===== */
-    header {
-      position:fixed; top:0; left:0; right:0;
-      background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1);
-      display:flex; justify-content:space-between; align-items:center;
-      padding:10px 6%; z-index:1000;
-    }
-    .logo-container { display:flex; align-items:center; gap:10px; text-decoration: none; }
-    .logo-container img { width:40px; height:40px; object-fit:contain; }
-    .logo-text { font-weight:600; font-size:1.1rem; color:#2563eb; }
+    nav{display:flex;gap:22px}
+    nav a{color:#374151;text-decoration:none;font-weight:500}
+    nav a:hover,nav a.active{color:#2563eb}
 
-    header nav { display:flex; gap: 20px; }
-    header nav a {
-      color:#333; text-decoration:none; font-weight:500;
-      transition:color 0.3s; position: relative;
-    }
-    header nav a:hover, header nav a.active { color:#2563eb; }
-    header nav a.active::after {
-        content: ''; position: absolute; width: 100%; height: 2px;
-        bottom: -4px; left: 0; background: #2563eb;
-    }
-    
-    /* Accessibility Focus State */
-    header nav a:focus-visible, .hero a:focus-visible, .cta-btn:focus-visible, footer a:focus-visible, #menu-btn:focus-visible {
-      outline: 2px dashed #2563eb;
-      outline-offset: 3px;
-    }
+    #menu-btn{display:none;font-size:1.7rem;background:none;border:none}
 
-    #menu-btn { display:none; background:none; border:none; font-size:1.8rem; cursor:pointer; color:#333; }
-
-    /* Mobile Menu */
     @media(max-width:768px){
-      #menu-btn { display:block; }
-      header nav {
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: #fff; border-top: 1px solid #eee;
-        flex-direction: column; padding: 20px; gap: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transform: translateY(-150%); opacity: 0; pointer-events: none;
-        transition: all 0.3s ease; z-index: 999;
-      }
-      header nav.nav-active { transform: translateY(0); opacity: 1; pointer-events: all; }
+      nav{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;
+          padding:20px;display:none}
+      nav.active{display:flex}
+      #menu-btn{display:block}
     }
 
-    /* ===== HERO ===== */
-    .hero {
-      position:relative; background:linear-gradient(135deg,#2563eb,#1e40af);
-      color:white; padding:160px 6% 100px; /* Adjusted top padding for fixed header */
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
-      gap: 40px; overflow:hidden;
+    /* HERO */
+    .hero{
+      background:linear-gradient(135deg,#2563eb,#1e40af);
+      color:#fff;padding:160px 6% 100px;
+      display:grid;grid-template-columns:1fr 1fr;gap:40px
     }
-    
-    /* Orb Animations */
-    .orb {
-      position:absolute; border-radius:50%; opacity:0.3; filter:blur(60px);
-      animation:float 8s ease-in-out infinite; z-index:0;
+    .hero h1{font-size:3rem;line-height:1.2;margin-bottom:20px}
+    .hero p{font-size:1.1rem;margin-bottom:30px;opacity:.95}
+    .hero a{display:inline-block;background:#fff;color:#2563eb;
+      padding:12px 26px;border-radius:6px;font-weight:600;text-decoration:none}
+    .hero a.secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4)}
+
+    .hero img{width:100%;max-width:500px;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,.3)}
+
+    @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}}
+
+    /* SECTIONS */
+    section{padding:100px 6%}
+    .section-title{text-align:center;margin-bottom:50px}
+    .section-title h2{color:#2563eb;font-size:2.2rem}
+    .section-title p{color:#6b7280;max-width:600px;margin:10px auto 0}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+    .card{background:#fff;padding:30px;border-radius:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .card i{font-size:2.4rem;color:#2563eb;margin-bottom:15px}
+
+    /* CTA */
+    .cta{background:linear-gradient(90deg,#1e40af,#2563eb);color:#fff;text-align:center}
+    .cta h3{font-size:2.2rem;margin-bottom:15px}
+    .cta a{background:#fff;color:#2563eb;padding:14px 34px;
+      border-radius:30px;font-weight:700;text-decoration:none}
+
+    /* FOOTER */
+    footer{background:#111827;color:#9ca3af;padding:60px 6% 20px}
+    footer h4{color:#fff;margin-bottom:12px}
+    footer a{color:#60a5fa;text-decoration:none}
+    footer .bottom{text-align:center;margin-top:30px;font-size:.85rem}
+  </style>
+
+  <!-- ================= STRUCTURED DATA ================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ghannaway Tech Systems",
+    "url": "https://ghannawaytechsystems.github.io/ghannawaytechsystems.com/",
+    "logo": "https://ghannawaytechsystems.github.io/ghannawaytechsystems.com/assets/img/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+254757041431",
+      "contactType": "Sales"
     }
-    .orb:nth-child(1) { top:-50px; left:-50px; width:300px; height:300px; background:#60a5fa; }
-    .orb:nth-child(2) { bottom:-50px; right:-50px; width:400px; height:400px; background:#1d4ed8; animation-delay:2s; }
-    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
+  }
+  </script>
+</head>
+<body>
 
-    .hero-text { flex:1 1 400px; max-width:600px; z-index:1; }
-    .hero h1 { font-size:3rem; line-height: 1.2; margin-bottom:20px; animation:fadeUp 0.8s ease backwards; }
-    .hero p { font-size:1.1rem; margin-bottom:30px; opacity: 0.9; animation:fadeUp 0.8s ease 0.2s backwards; }
-    
-    .hero-btns { display: flex; gap: 15px; animation:fadeUp 0.8s ease 0.4s backwards; }
-    .hero a {
-      display:inline-block; background:white; color:#2563eb;
-      padding:12px 25px; border-radius:6px; font-weight:600; text-decoration:none;
-      transition:transform 0.3s, box-shadow 0.3s;
-    }
-    .hero a:hover { transform:translateY(-3px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
-    .hero a.secondary { background:transparent; color:white; border:2px solid rgba(255,255,255,0.3); }
-    .hero a.secondary:hover { background:white; color:#2563eb; border-color:white; }
+<header>
+  <a href="index.html" class="logo">
+    <img src="assets/img/logo.png" alt="Ghannaway Tech Systems logo">
+    <span>Ghannaway Tech Systems</span>
+  </a>
+  <nav id="nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <button id="menu-btn"><i class="fas fa-bars"></i></button>
+</header>
 
-    .hero-img-container { flex:1 1 400px; z-index:1; display: flex; justify-content: center; }
-    .hero img { width:100%; max-width:500px; border-radius:12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); animation:zoomIn 1s ease; }
+<main>
+  <section class="hero">
+    <div>
+      <h1>IT Consulting & Software Development in Kenya & Africa</h1>
+      <p>
+        <strong>Ghannaway Tech Systems (GTS)</strong> delivers custom software,
+        cloud hosting, networking infrastructure, and POS systems to businesses
+        and institutions across Africa.
+      </p>
+      <a href="services.html">Our Services</a>
+      <a href="contact.html" class="secondary">Contact Sales</a>
+    </div>
+    <div>
+      <img src="assets/img/hero.png" alt="GTS software dashboard and IT infrastructure">
+    </div>
+  </section>
 
-    /* ===== SECTIONS COMMON ===== */
-    .section-pad { padding: 100px 6%; }
-    .section-header { text-align: center; margin-bottom: 50px; }
-    .section-header h2 { color:#2563eb; font-size:2rem; margin-bottom:10px; }
-    .section-header p { color:#6b7280; max-width: 600px; margin: 0 auto; }
+  <section>
+    <div class="section-title">
+      <h2>Our Core IT Services</h2>
+      <p>End‑to‑end technology solutions designed for African businesses.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-network-wired"></i>
+        <h3>Networking & Infrastructure</h3>
+        <p>Enterprise networking, CCTV installation, servers, and on‑premise IT systems.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-code"></i>
+        <h3>Software Development</h3>
+        <p>Web, mobile apps, APIs, automation tools, and custom enterprise systems.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-cloud"></i>
+        <h3>Cloud & Hosting</h3>
+        <p>Secure cloud hosting, VPS management, DevOps and data backup solutions.</p>
+      </div>
+    </div>
+  </section>
 
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
-    
-    /* Services Cards */
-    .card {
-      background:white; padding:30px; border-radius:12px; border: 1px solid #f3f4f6;
-      box-shadow:0 4px 6px rgba(0,0,0,0.05); transition:transform 0.3s, box-shadow 0.3s;
+  <section class="cta">
+    <h3>Ready to Grow with Technology?</h3>
+    <p>Talk to GTS today and get a solution tailored to your business.</p>
+    <a href="contact.html">Get Started</a>
+  </section>
+</main>
+
+<footer>
+  <div class="grid">
+    <div>
+      <h4>Ghannaway Tech Systems</h4>
+      <p>Empowering Africa through reliable IT solutions.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <p><a href="services.html">Services</a></p>
+      <p><a href="products.html">Products</a></p>
+      <p><a href="blog.html">Blog</a></p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Email: ghannawaytechsystems@gmail.com</p>
+      <p>Phone: +254 757 041 431</p>
+      <p>Nairobi, Kenya</p>
+    </div>
+  </div>
+  <div class="bottom">© 2025 Ghannaway Tech Systems. All rights reserved.</div>
+</footer>
+
+<script>
+  const btn=document.getElementById('menu-btn');
+  const nav=document.getElementById('nav');
+  btn.onclick=()=>nav.classList.toggle('active');
+</script>
+
+</body>
+</html>
       opacity:0; transform:translateY(30px); /* Hidden for scroll reveal */
     }
     .card:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.1); border-color: #bfdbfe; }
@@ -187,8 +281,8 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Ghannaway Tech Systems",
-    "url": "https://www.yourdomain.com/index.html",
-    "logo": "https://www.yourdomain.com/assets/img/logo.png",
+    "url": "https://ghannawaytechsystems.github.io/ghannawaytechsystems.com/index.html",
+    "logo": "https://ghannawaytechsystems.github.io/ghannawaytechsystems.com/assets/img/logo.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+254-757-041-431",
@@ -385,6 +479,7 @@
 </script>
 </body>
 </html>
+
 
 
 
